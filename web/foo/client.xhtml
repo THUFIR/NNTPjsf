@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="content">
+
+
+        <ui:remove>
+            <ui:repeat value="#{messageBean.messages}" var="message">
+                <ui:repeat value="#{message.headers}" var="header">
+                    <h:outputText value="#{header}" />
+                </ui:repeat>
+            </ui:repeat>
+        </ui:remove>
+
+        <ui:remove>
+            <ui:repeat value="#{messageBean.messages}" var="message">
+                <li>
+                    <h:outputText value="#{message.messageNumber}" />
+                    <h:outputText value="#{message.subject}" />
+                </li>
+
+
+            </ui:repeat>
+        </ui:remove>
+
+
+        <h:dataTable value="#{messageBean.model}" var="m">
+            <h:column>
+                <f:facet name="subject">
+                    <h:outputText value="subject" />
+                </f:facet>
+                <h:outputText value="#{m.subject}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="content">
+                    <h:outputText value="content" />
+                </f:facet>
+                <h:outputText value="#{m.url}"></h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="date">
+                    <h:outputText value="date" />
+                </f:facet>
+                <h:outputText value="#{m.sentDate}"></h:outputText>
+            </h:column>
+        </h:dataTable>
+
+
+    </ui:define>
+</ui:composition>
