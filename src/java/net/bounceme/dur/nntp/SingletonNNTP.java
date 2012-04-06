@@ -1,9 +1,16 @@
 package net.bounceme.dur.nntp;
 
+
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.*;
+import javax.mail.Folder;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.URLName;
+import javax.mail.Message;
+
+
 
 public enum SingletonNNTP {
 
@@ -13,7 +20,6 @@ public enum SingletonNNTP {
     private Properties props = new Properties();
     private List<Message> messages = new ArrayList<Message>();
     private boolean loaded = false;
-    private List<MessageEntity> messageEntities = new ArrayList<MessageEntity>();
 
     private SingletonNNTP() {
         logger.logp(level, "SingletonNNTP", "SingletonNNTP", "only once...");
@@ -41,40 +47,18 @@ public enum SingletonNNTP {
         Folder root = store.getDefaultFolder();
         Folder folder = root.getFolder(props.getProperty("nntp.group"));
         folder.open(Folder.READ_ONLY);
-        Message[] msgs = folder.getMessages();
+        javax.mail.Message[] msgs = folder.getMessages();
         messages = Arrays.asList(msgs);
-        setEntities();
-        folder.close(false);
-        store.close();
+        //folder.close(false);
+        //store.close();
         return true;
     }
 
-    public List<MessageEntity> getEntities() {
+    public List<Message> getEntities() {
         logger.logp(level, "SingletonNNTP", "getEntities", "getting entities");
-        for (MessageEntity m : messageEntities) {
-            for (Header h : m.getHeaders()) {
-                logger.log(level, h.toString());
-            }
-        }
-        return Collections.unmodifiableList(messageEntities);
+        return Collections.unmodifiableList(messages);
     }
 
-    private void setEntities() throws Exception {
-        logger.logp(level, "SingletonNNTP", "loadEntities", "trying to convert");
-        messageEntities = new ArrayList<MessageEntity>();
-        for (Message message : messages) {
-            MessageEntity entity = new MessageEntity();
-            Enumeration allHeaders = message.getAllHeaders();
-            List<Header> headers = new ArrayList<Header>();
-            while (allHeaders.hasMoreElements()) {
-                Header hdr = (Header) allHeaders.nextElement();
-                headers.add(hdr);
-            }
-            entity.setHeaders(headers);
-            entity.setSubject(message.getSubject());
-            entity.setContent(message.getContent().toString());
-            entity.setSentDate(message.getReceivedDate());
-            messageEntities.add(entity);
-        }
-    }
+
+
 }
