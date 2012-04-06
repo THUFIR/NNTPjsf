@@ -54,8 +54,8 @@ public enum SingletonNNTP {
         return true;
     }
 
-    public List<Message> getEntities() {
-        logger.logp(level, "SingletonNNTP", "getEntities", "getting entities");
+    public List<Message> getMessages() {
+        logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
         return Collections.unmodifiableList(messages);
     }
 
