@@ -18,14 +18,14 @@ import javax.mail.Message;
 
 @Named
 @SessionScoped
-public class MessageBean implements Serializable {
+public class Messages implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(MessageBean.class.getName());
+    private static final Logger logger = Logger.getLogger(Messages.class.getName());
     private static Level level = Level.INFO;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
-    public MessageBean() {
+    public Messages() {
         logger.log(level, "MessageBean..");
     }
 
@@ -35,13 +35,13 @@ public class MessageBean implements Serializable {
 
     public DataModel getModel() throws Exception {
         logger.log(level, "MessageBean.getModel..");
-        List<Message> messages = new ArrayList<Message>();
+        List<javax.mail.Message> messages = new ArrayList<javax.mail.Message>();
         messages = nntp.getMessages();
         DataModel messagesDataModel = new ListDataModel(messages);
         return messagesDataModel;
     }
 
-    public URL getUrl(Message message) throws Exception {
+    public URL getUrl(javax.mail.Message message) throws Exception {
         List<Header> headers = getHeaders(message);
         URL url = new URL("http://www.google.com/");
         for (Header h : headers) {
@@ -54,7 +54,7 @@ public class MessageBean implements Serializable {
         return url;
     }
 
-    private List<Header> getHeaders(Message message) throws Exception {
+    private List<Header> getHeaders(javax.mail.Message message) throws Exception {
         Enumeration allHeaders = message.getAllHeaders();
         List<Header> headers = new ArrayList<Header>();
         while (allHeaders.hasMoreElements()) {

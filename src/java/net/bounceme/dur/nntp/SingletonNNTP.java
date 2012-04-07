@@ -11,7 +11,7 @@ public enum SingletonNNTP {
     private final Logger logger = Logger.getLogger(SingletonNNTP.class.getName());
     private final Level level = Level.INFO;
     private Properties props = new Properties();
-    private List<Message> messages = new ArrayList<Message>();
+    private List<javax.mail.Message> messages = new ArrayList<javax.mail.Message>();
     private boolean loaded = false;
     private int index = 0;
     private Folder folder = null;
@@ -30,7 +30,7 @@ public enum SingletonNNTP {
         }
     }
 
-    public List<Message> getMessages(boolean debug) throws Exception {
+    public List<javax.mail.Message> getMessages(boolean debug) throws Exception {
         logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
         return Collections.unmodifiableList(messages);
     }
@@ -52,7 +52,7 @@ public enum SingletonNNTP {
     }
 
     private void setMessages() throws Exception {
-        Message[] msgs;
+        javax.mail.Message[] msgs;
         msgs = folder.getMessages(index - 10, index);
         messages = Arrays.asList(msgs);
         Collections.reverse(messages);
@@ -69,7 +69,7 @@ public enum SingletonNNTP {
         setMessages();
     }
 
-    public List<Message> getMessages() {
+    public List<javax.mail.Message> getMessages() {
         logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
         return Collections.unmodifiableList(messages);
     }
