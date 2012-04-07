@@ -16,10 +16,13 @@
     <ui:define name="content">
         <h:dataTable value="#{messages.model}" var="m">
             <h:column>
-                <f:facet name="subject">
-                    <h:outputText value="subject" />
+                <f:facet name="id">
+                    <h:outputText value="id" />
                 </f:facet>
-                <h:outputLink value="#{messages.detail(m)}">#{messages.detail(m)}</h:outputLink>
+                <h:outputLink id="link1" value="detail.xhtml">
+                    <f:param name="id" value="#{m.getMessageNumber()}" />
+                     <h:outputText value="#{m.getMessageNumber()}" />
+                </h:outputLink>
             </h:column>
             <h:column>
                 <f:facet name="subject">
