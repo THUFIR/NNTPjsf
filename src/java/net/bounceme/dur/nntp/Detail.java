@@ -5,25 +5,17 @@
 package net.bounceme.dur.nntp;
 
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
 import javax.mail.Message;
 
-/**
- *
- * @author thufir
- *
- *
- *  @ManagedProperty(value="#{param.id}") private Integer id;
- *
- *
- */
 @Named
 @Dependent
-@ManagedProperty(value="#{param.id}")
 public class Detail {
 
-    private Message message = null;
+    @ManagedProperty(value = "#{param.id}")
     private Integer id = 0;
+    private Message message = null;
 
     public Detail() {
     }
