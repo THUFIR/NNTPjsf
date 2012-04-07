@@ -63,6 +63,7 @@ public enum SingletonNNTP {
         index = index - 10;
         setMessages();
     }
+
     public void forward() throws Exception {
         logger.log(level, "SingletonNNTP.forward..");
         index = index + 10;
@@ -72,5 +73,16 @@ public enum SingletonNNTP {
     public List<javax.mail.Message> getMessages() {
         logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
         return Collections.unmodifiableList(messages);
+    }
+
+    public Message getMessage(int id) {
+        Message message = null;
+        for (Message m : messages) {
+            int i = 0;
+            if ( i == m.getMessageNumber()) {
+            }
+        }
+        message = messages.get(id);
+        return message;
     }
 }

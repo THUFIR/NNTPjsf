@@ -7,14 +7,13 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="top">
         <h:form>
-            <h:commandButton action="#{detail.back()}" value="..back" />
+            <h:commandButton action="#{detail.back()}" value="..previous" />
         </h:form>
         <h:form>
-            <h:commandButton action="#{detail.forward()}" value="forward.." />
+            <h:commandButton action="#{detail.forward()}" value="next.." />
         </h:form>
     </ui:define>
     <ui:define name="content">
-
-
+        <h:outputText value="#{detail.content}"></h:outputText>
     </ui:define>
 </ui:composition>
