@@ -3,11 +3,7 @@ package net.bounceme.dur.nntp;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Folder;
-import javax.mail.Session;
-import javax.mail.Store;
-import javax.mail.URLName;
-import javax.mail.Message;
+import javax.mail.*;
 
 public enum SingletonNNTP {
 
@@ -17,13 +13,17 @@ public enum SingletonNNTP {
     private Properties props = new Properties();
     private List<Message> messages = new ArrayList<Message>();
     private boolean loaded = false;
+    private int index = 0;
+    private Folder folder = null;
+    private Folder root = null;
+    private Store store = null;
 
     private SingletonNNTP() {
         logger.logp(level, "SingletonNNTP", "SingletonNNTP", "only once...");
         props = PropertiesReader.getProps();
         if (!loaded) {
             try {
-                loaded = setMessages();
+                loaded = connect();
             } catch (Exception ex) {
                 Logger.getLogger(SingletonNNTP.class.getName()).log(Level.SEVERE, "FAILED TO LOAD MESSAGES", ex);
             }
@@ -35,39 +35,42 @@ public enum SingletonNNTP {
         return Collections.unmodifiableList(messages);
     }
 
-    private boolean setMessages() throws Exception {
+    private boolean connect() throws Exception {
         logger.logp(level, "SingletonNNTP", "setMessages", "connecting to leafnode");
         Session session = Session.getDefaultInstance(props);
         session.setDebug(false);
-        Store store = session.getStore(new URLName(props.getProperty("nntp.host")));
+        store = session.getStore(new URLName(props.getProperty("nntp.host")));
         store.connect();
-        Folder root = store.getDefaultFolder();
-        Folder folder = root.getFolder(props.getProperty("nntp.group"));
+        root = store.getDefaultFolder();
+        folder = root.getFolder(props.getProperty("nntp.group"));
         folder.open(Folder.READ_ONLY);
-        int last = folder.getMessageCount();
-        Message[] msgs;
-        msgs = folder.getMessages();
-        messages = Arrays.asList(msgs);
-        Collections.reverse(messages);
+        index = folder.getMessageCount();
         //folder.close(false);
         //store.close();
+        setMessages();
         return true;
     }
 
-    private List<Message> subMessages() {
-        List<Message> jr = null;
-        if (messages.size() > 10) {
-            jr = messages.subList(0, 9);
-            messages = messages.subList(10, messages.size() - 1);
-            return Collections.unmodifiableList(jr);
-        } else {
-            return Collections.unmodifiableList(messages);
-        }
+    private void setMessages() throws Exception {
+        Message[] msgs;
+        msgs = folder.getMessages(index - 10, index);
+        messages = Arrays.asList(msgs);
+        Collections.reverse(messages);
+    }
+
+    public void back() throws Exception {
+        logger.log(level, "SingletonNNTP.back..");
+        index = index - 10;
+        setMessages();
+    }
+    public void forward() throws Exception {
+        logger.log(level, "SingletonNNTP.forward..");
+        index = index + 10;
+        setMessages();
     }
 
     public List<Message> getMessages() {
         logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
-        List<Message> tmp = subMessages();
-        return Collections.unmodifiableList(tmp);
+        return Collections.unmodifiableList(messages);
     }
 }

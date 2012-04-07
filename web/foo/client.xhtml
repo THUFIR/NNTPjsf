@@ -7,12 +7,10 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="left">
         <h:form>
-            <p><h:commandButton action="#{messageBean.back}" value="back.." /></p>
+            <p><h:commandButton action="#{messageBean.back}" value="..back" /></p>
         </h:form>
         <h:form>
-            <h:commandLink action="forward"  value='forward'  type="forwardType"  >
-                <f:param name="forwardParamName" value="forwardParamValue"/>
-            </h:commandLink>
+            <p><h:commandButton action="#{messageBean.forward}" value="forward.." /></p>
         </h:form>
     </ui:define>
     <ui:define name="content">

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
@@ -21,7 +23,7 @@ public class MessageBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(MessageBean.class.getName());
     private static Level level = Level.INFO;
-    private int index = 0;
+    private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
     public MessageBean() {
         logger.log(level, "MessageBean..");
@@ -34,7 +36,6 @@ public class MessageBean implements Serializable {
     public DataModel getModel() throws Exception {
         logger.log(level, "MessageBean.getModel..");
         List<Message> messages = new ArrayList<Message>();
-        SingletonNNTP nntp = SingletonNNTP.INSTANCE;
         messages = nntp.getMessages();
         DataModel messagesDataModel = new ListDataModel(messages);
         return messagesDataModel;
@@ -63,7 +64,13 @@ public class MessageBean implements Serializable {
         return headers;
     }
 
-    public void back() {
+    public void forward() throws Exception {
+        logger.log(level, "MessageBean.forward..");
+        nntp.forward();
+    }
+
+    public void back() throws Exception {
         logger.log(level, "MessageBean.back..");
+        nntp.back();
     }
 }
