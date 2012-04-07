@@ -21,9 +21,14 @@ public class MessageBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(MessageBean.class.getName());
     private static Level level = Level.INFO;
+    private int index = 0;
 
     public MessageBean() {
         logger.log(level, "MessageBean..");
+    }
+
+    public void action() throws Exception {
+        logger.log(level, "action..");
     }
 
     public DataModel getModel() throws Exception {
@@ -35,40 +40,30 @@ public class MessageBean implements Serializable {
         return messagesDataModel;
     }
 
-    public List<String> getStringHeaders(Message message) throws Exception {
-        List<Header> headerListOfHeaders = getHeaders(message);
-        List<String> stringListOfHeaders = new ArrayList<String>();
-        for (Header h : headerListOfHeaders) {
-            stringListOfHeaders.add(h.getName() + " " + h.getValue() + "\n");
-        }
-        return stringListOfHeaders;
-    }
-
     public URL getUrl(Message message) throws Exception {
         List<Header> headers = getHeaders(message);
         URL url = new URL("http://www.google.com/");
         for (Header h : headers) {
             if ("Archived-at".equals(h.getName())) {
-                String s = h.getValue();
-                s = s.substring(1, s.length() - 1);
-                url = new URL(s);
+                String stringUrl = h.getValue();
+                stringUrl = stringUrl.substring(1, stringUrl.length() - 1);
+                url = new URL(stringUrl);
             }
         }
         return url;
     }
 
     private List<Header> getHeaders(Message message) throws Exception {
-            Enumeration allHeaders = message.getAllHeaders();
-            List<Header> headers = new ArrayList<Header>();
-            while (allHeaders.hasMoreElements()) {
-                Header hdr = (Header) allHeaders.nextElement();
-                headers.add(hdr);
-            }
-            return headers;
+        Enumeration allHeaders = message.getAllHeaders();
+        List<Header> headers = new ArrayList<Header>();
+        while (allHeaders.hasMoreElements()) {
+            Header hdr = (Header) allHeaders.nextElement();
+            headers.add(hdr);
         }
+        return headers;
+    }
 
-
-
-
-
+    public void back() {
+        logger.log(level, "MessageBean.back..");
+    }
 }

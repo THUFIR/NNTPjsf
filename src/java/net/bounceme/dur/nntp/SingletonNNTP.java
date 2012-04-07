@@ -1,6 +1,5 @@
 package net.bounceme.dur.nntp;
 
-
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,8 +8,6 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.URLName;
 import javax.mail.Message;
-
-
 
 public enum SingletonNNTP {
 
@@ -47,18 +44,30 @@ public enum SingletonNNTP {
         Folder root = store.getDefaultFolder();
         Folder folder = root.getFolder(props.getProperty("nntp.group"));
         folder.open(Folder.READ_ONLY);
-        javax.mail.Message[] msgs = folder.getMessages();
+        int last = folder.getMessageCount();
+        Message[] msgs;
+        msgs = folder.getMessages();
         messages = Arrays.asList(msgs);
+        Collections.reverse(messages);
         //folder.close(false);
         //store.close();
         return true;
     }
 
-    public List<Message> getMessages() {
-        logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
-        return Collections.unmodifiableList(messages);
+    private List<Message> subMessages() {
+        List<Message> jr = null;
+        if (messages.size() > 10) {
+            jr = messages.subList(0, 9);
+            messages = messages.subList(10, messages.size() - 1);
+            return Collections.unmodifiableList(jr);
+        } else {
+            return Collections.unmodifiableList(messages);
+        }
     }
 
-
-
+    public List<Message> getMessages() {
+        logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
+        List<Message> tmp = subMessages();
+        return Collections.unmodifiableList(tmp);
+    }
 }
