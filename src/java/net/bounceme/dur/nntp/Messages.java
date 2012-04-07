@@ -66,12 +66,12 @@ public class Messages implements Serializable {
 
     public void forward() throws Exception {
         logger.log(level, "MessageBean.forward..");
-        nntp.forward();
+        nntp.nextMessages();
     }
 
     public void back() throws Exception {
         logger.log(level, "MessageBean.back..");
-        nntp.back();
+        nntp.previousMessages();
     }
 
     public String detail() throws Exception {

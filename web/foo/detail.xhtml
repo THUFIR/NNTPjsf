@@ -7,10 +7,18 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="top">
         <h:form>
-            <h:commandButton action="#{detail.back()}" value="..previous" />
+            <h:form>
+                <h:outputLink id="link1" value="detail.xhtml">
+                    <f:param name="id" value="#{detail.back()}" />
+                    <h:outputText value="back" />
+                </h:outputLink>
+            </h:form>
         </h:form>
         <h:form>
-            <h:commandButton action="#{detail.forward()}" value="next.." />
+            <h:outputLink id="link1" value="detail.xhtml">
+                <f:param name="id" value="#{detail.forward()}" />
+                <h:outputText value="forward" />
+            </h:outputLink>
         </h:form>
     </ui:define>
     <ui:define name="content">

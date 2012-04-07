@@ -58,13 +58,13 @@ public enum SingletonNNTP {
         Collections.reverse(messages);
     }
 
-    public void back() throws Exception {
+    public void previousMessages() throws Exception {
         logger.log(level, "SingletonNNTP.back..");
         index = index - 10;
         setMessages();
     }
 
-    public void forward() throws Exception {
+    public void nextMessages() throws Exception {
         logger.log(level, "SingletonNNTP.forward..");
         index = index + 10;
         setMessages();
