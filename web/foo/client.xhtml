@@ -7,14 +7,20 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="top">
         <h:form>
-            <p><h:commandButton action="#{messages.back()}" value="..back" /></p>
+            <h:commandButton action="#{messages.back()}" value="..back" />
         </h:form>
         <h:form>
-            <p><h:commandButton action="#{messages.forward()}" value="forward.." /></p>
+            <h:commandButton action="#{messages.forward()}" value="forward.." />
         </h:form>
     </ui:define>
     <ui:define name="content">
         <h:dataTable value="#{messages.model}" var="m">
+            <h:column>
+                <f:facet name="subject">
+                    <h:outputText value="subject" />
+                </f:facet>
+                <h:outputLink value="#{messages.detail(m)}">#{messages.detail(m)}</h:outputLink>
+            </h:column>
             <h:column>
                 <f:facet name="subject">
                     <h:outputText value="subject" />
@@ -31,7 +37,7 @@
                 <f:facet name="date">
                     <h:outputText value="date" />
                 </f:facet>
-                <h:outputLink value="#{messages.getUrl(m)}">'#{messages.getUrl(m)}'</h:outputLink>
+                <h:outputLink value="#{messages.getUrl(m)}">#{messages.getUrl(m)}</h:outputLink>
             </h:column>
         </h:dataTable>
     </ui:define>
