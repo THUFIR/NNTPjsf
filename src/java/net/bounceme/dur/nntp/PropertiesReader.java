@@ -12,7 +12,7 @@ public class PropertiesReader {
     private static final Logger logger = Logger.getLogger(PropertiesReader.class.getName());
     private static Level level = Level.INFO;
     private static Properties props = new Properties();
-    private List<Message> messages = new ArrayList<Message>();
+    private List<Detail> messages = new ArrayList<Detail>();
 
     public static Properties getProps() {
         logger.log(level, "NNTP.loadMessages...");

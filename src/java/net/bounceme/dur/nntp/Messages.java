@@ -73,4 +73,7 @@ public class Messages implements Serializable {
         logger.log(level, "MessageBean.back..");
         nntp.back();
     }
+    public void detail() throws Exception {
+        logger.log(level, "MessageBean.detail..");
+    }
 }
