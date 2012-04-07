@@ -2,12 +2,12 @@ package net.bounceme.dur.nntp;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
+import javax.inject.Named;
 import javax.mail.Message;
 
-@ManagedBean(value = "detail")
+@Named
 @RequestScoped
 public class Detail {
 
