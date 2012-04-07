@@ -7,41 +7,14 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="top">
         <h:form>
-            <h:commandButton action="#{messages.back()}" value="..back" />
+            <h:commandButton action="#{detail.back()}" value="..back" />
         </h:form>
         <h:form>
-            <h:commandButton action="#{messages.forward()}" value="forward.." />
+            <h:commandButton action="#{detail.forward()}" value="forward.." />
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <h:dataTable value="#{messages.model}" var="m">
-            <h:column>
-                <f:facet name="id">
-                    <h:outputText value="id" />
-                </f:facet>
-                <h:outputLink id="link1" value="detail.xhtml">
-                    <f:param name="id" value="#{m.getMessageNumber()}" />
-                     <h:outputText value="#{m.getMessageNumber()}" />
-                </h:outputLink>
-            </h:column>
-            <h:column>
-                <f:facet name="subject">
-                    <h:outputText value="subject" />
-                </f:facet>
-                <h:outputText value="#{m.subject}"></h:outputText>
-            </h:column>
-            <h:column>
-                <f:facet name="content">
-                    <h:outputText value="content" />
-                </f:facet>
-                <h:outputText value="#{m.sentDate}"></h:outputText>
-            </h:column>
-            <h:column>
-                <f:facet name="date">
-                    <h:outputText value="date" />
-                </f:facet>
-                <h:outputLink value="#{messages.getUrl(m)}">#{messages.getUrl(m)}</h:outputLink>
-            </h:column>
-        </h:dataTable>
+
+
     </ui:define>
 </ui:composition>
