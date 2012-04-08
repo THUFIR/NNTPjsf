@@ -10,7 +10,7 @@ import javax.inject.Inject;
 public class HttpParamProducer {
 
     @Inject
-    private FacesContext facesContext = null;
+    private FacesContext facesContext;
 
     @Produces
     @HttpParam
@@ -19,11 +19,6 @@ public class HttpParamProducer {
         if ("".equals(name)) {
             name = ip.getMember().getName();
         }
-        FacesContextFactory factory = (FacesContextFactory) FactoryFinder.getFactory(FactoryFinder.FACES_CONTEXT_FACTORY);
-        String context = "context";
-        String request = "request";
-        String response = "response";
-        facesContext = factory.getFacesContext(context, request, response, null);
-        return facesContext.getExternalContext().getRequestParameterMap().get(name);
+        return facesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(name);
     }
 }
