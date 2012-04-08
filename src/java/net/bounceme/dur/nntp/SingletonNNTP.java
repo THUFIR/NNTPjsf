@@ -76,10 +76,11 @@ public enum SingletonNNTP {
     }
 
     public Message getMessage(int id) {
+        logger.log(level, "SingletonNNTP.forward..{0}", messages.size());
         Message message = null;
         for (Message m : messages) {
             int i = 0;
-            if ( i == m.getMessageNumber()) {
+            if (i == m.getMessageNumber()) {
             }
         }
         message = messages.get(id);

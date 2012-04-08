@@ -27,7 +27,6 @@ public class Detail {
 
     public int forward() {
         logger.log(level, "Detail.forward..{0}", id);
-        //id = String.valueOf(Integer.parseInt(id) + 1);
         id = id + 1;
         logger.log(level, "..Detail.forward {0}", id);
         return id;
@@ -35,7 +34,6 @@ public class Detail {
 
     public int back() {
         logger.log(level, "Detail.back..{0}", id);
-        //id = String.valueOf(Integer.parseInt(id) - 1);
         id = id - 1;
         logger.log(level, "..Detail.back {0}", id);
         return id;

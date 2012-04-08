@@ -1,5 +1,7 @@
 package net.bounceme.dur.nntp;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -7,13 +9,17 @@ import javax.faces.convert.FacesConverter;
 import javax.mail.Message;
 
 @FacesConverter("messageConverter")
-public class MessageConverter implements Converter{
+public class MessageConverter implements Converter {
 
+    private static final Logger logger = Logger.getLogger(MessageConverter.class.getName());
+    private static final Level level = Level.INFO;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return nntp.getMessage(Integer.parseInt(value));
+        logger.log(level, "MessageConverter.getAsObject..{0}", value);
+        Message message = nntp.getMessage(Integer.parseInt(value));
+        return message;
     }
 
     @Override
@@ -21,5 +27,4 @@ public class MessageConverter implements Converter{
         Message message = (Message) value;
         return String.valueOf(message.getMessageNumber());
     }
-
 }
