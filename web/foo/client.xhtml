@@ -19,11 +19,8 @@
                 <f:facet name="id">
                     <h:outputText value="id" />
                 </f:facet>
-                <h:outputLink id="back" value="detail.xhtml">
-                    <f:metadata>
-                        <f:viewParam name="id" value="#{detail.message}" converter="messageConverter" />
-                    </f:metadata>
-                    <f:param name="id" value="#{detail.back()}" />
+                <h:outputLink id="hmmm" value="detail.xhtml">
+                    <f:param name="id" value="#{m.getMessageNumber()}" />
                     <h:outputText value="#{m.getMessageNumber()}" />
                 </h:outputLink>
             </h:column>

@@ -13,17 +13,17 @@ public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    String id;
+    String id = "1529";
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
     public Detail() {
-        MessageConverter mc = new MessageConverter();
-        FacesContext fc = FacesContext.getCurrentInstance();
-        String value = String.valueOf(id);
-        UIComponent ui = null;
-        Object obj = mc.getAsObject(fc, ui, value);
-        message = (Message) obj;
+        /*
+         * MessageConverter mc = new MessageConverter(); FacesContext fc =
+         * FacesContext.getCurrentInstance(); String value = String.valueOf(id);
+         * UIComponent ui = null; Object obj = mc.getAsObject(fc, ui, value);
+         * message = (Message) obj;
+         */
     }
 
     public String forward() {
@@ -46,6 +46,10 @@ public class Detail {
 
     public Message getMessage() {
         return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
     public String getContent() throws Exception {
