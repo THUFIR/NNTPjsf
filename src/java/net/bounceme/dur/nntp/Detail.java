@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Message;
 
@@ -12,7 +13,7 @@ public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private int id = 0;
+    String id;
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
@@ -25,16 +26,20 @@ public class Detail {
         message = (Message) obj;
     }
 
-    public int forward() {
+    public String forward() {
         logger.log(level, "Detail.forward..{0}", id);
-        id = id + 1;
+        int i = Integer.parseInt(id);
+        i = i + 1;
+        id = String.valueOf(i);
         logger.log(level, "..Detail.forward {0}", id);
         return id;
     }
 
-    public int back() {
+    public String back() {
         logger.log(level, "Detail.back..{0}", id);
-        id = id - 1;
+        int i = Integer.parseInt(id);
+        i = i - 1;
+        id = String.valueOf(i);
         logger.log(level, "..Detail.back {0}", id);
         return id;
     }

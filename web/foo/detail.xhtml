@@ -7,15 +7,13 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="top">
         <h:form>
-            <h:form>
-                <h:outputLink id="back" value="detail.xhtml">
-                    <f:metadata>
-                        <f:viewParam name="id" value="#{detail.message}" converter="messageConverter" />
-                    </f:metadata>
-                    <f:param name="id" value="#{detail.back()}" />
-                    <h:outputText value="back" />
-                </h:outputLink>
-            </h:form>
+            <h:outputLink id="back" value="detail.xhtml">
+                <f:metadata>
+                    <f:viewParam name="id" value="#{detail.message}" converter="messageConverter" />
+                </f:metadata>
+                <f:param name="id" value="#{detail.back()}" />
+                <h:outputText value="back" />
+            </h:outputLink>
         </h:form>
         <h:form>
             <h:outputLink id="forward" value="detail.xhtml">
