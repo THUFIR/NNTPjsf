@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 import javax.inject.Qualifier;
 
 
-@Qualifier
-@Retention(RUNTIME)
-@Target({METHOD, FIELD, PARAMETER, TYPE})
+//@Qualifier
+//@Retention(RUNTIME)
+//@Target({METHOD, FIELD, PARAMETER, TYPE})
 public @interface HttpParam {
      public String value() default "";
 }

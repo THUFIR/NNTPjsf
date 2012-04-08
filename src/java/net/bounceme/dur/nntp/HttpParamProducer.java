@@ -7,11 +7,12 @@ import javax.inject.Inject;
 
 public class HttpParamProducer {
 
-    @Inject
+    //@Inject
     FacesContext facesContext;
 
-    @Produces
-    @HttpParam
+    //@Produces
+    //@HttpParam
+    /*
     String getHttpParameter(InjectionPoint ip) {
         String name = ip.getAnnotated().getAnnotation(HttpParam.class).value();
         if ("".equals(name)) {
@@ -19,4 +20,5 @@ public class HttpParamProducer {
         }
         return facesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get(name);
     }
+    */
 }
