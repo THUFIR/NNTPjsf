@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Message;
 
@@ -13,7 +14,8 @@ public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    @ManagedProperty(value = "#{param.id}")
+    @Inject @HttpParam
+    private String id_string = "0";
     private Integer id = 0;
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
