@@ -1,5 +1,7 @@
 package net.bounceme.dur.nntp;
 
+//ManagedBean
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.component.UIComponent;
