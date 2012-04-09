@@ -1,9 +1,5 @@
 package net.bounceme.dur.nntp;
 
-//ManagedBean
-//second MB comment
-
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.component.UIComponent;
