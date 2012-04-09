@@ -2,13 +2,10 @@ package net.bounceme.dur.nntp;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.annotation.ManagedBean;
 import javax.mail.Message;
 
-@Named
+@ManagedBean
 public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
@@ -18,12 +15,6 @@ public class Detail {
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
     public Detail() {
-        /*
-         * MessageConverter mc = new MessageConverter(); FacesContext fc =
-         * FacesContext.getCurrentInstance(); String value = String.valueOf(id);
-         * UIComponent ui = null; Object obj = mc.getAsObject(fc, ui, value);
-         * message = (Message) obj;
-         */
     }
 
     public String forward() {
