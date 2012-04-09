@@ -13,7 +13,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.mail.Header;
 
-@ManagedBean(name="messages")
+@ManagedBean
 @SessionScoped
 public class Messages implements Serializable {
 
@@ -21,6 +21,7 @@ public class Messages implements Serializable {
     private static final Logger logger = Logger.getLogger(Messages.class.getName());
     private static Level level = Level.INFO;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
+    private String foo = "baz";
 
     public Messages() {
         logger.log(level, "MessageBean..");
@@ -28,6 +29,15 @@ public class Messages implements Serializable {
 
     public void action() throws Exception {
         logger.log(level, "action..");
+    }
+
+    public void setFoo(String s) {
+        foo = s;
+    }
+
+    public String getFoo() {
+      logger.log(level, foo);
+        return "bar";
     }
 
     public DataModel getModel() throws Exception {
