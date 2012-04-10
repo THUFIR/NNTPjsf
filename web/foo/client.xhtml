@@ -23,8 +23,7 @@
                     <f:metadata>
                         <f:viewParam name="id" value="#{m.getMessageNumber()}" />
                     </f:metadata>
-                    <f:param name="id" value="#{m.getMessageNumber()}" />
-                    <h:outputText value="#{m.getMessageNumber()}" />
+                    <h:link outcome="detail?includeViewParams=true"/>
                 </h:outputLink>
             </h:column>
             <h:column>
