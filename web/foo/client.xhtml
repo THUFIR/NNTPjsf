@@ -20,6 +20,9 @@
                     <h:outputText value="id" />
                 </f:facet>
                 <h:outputLink id="hmmm" value="detail.xhtml">
+                    <f:metadata>
+                        <f:viewParam name="id" value="#{m.getMessageNumber()}" />
+                    </f:metadata>
                     <f:param name="id" value="#{m.getMessageNumber()}" />
                     <h:outputText value="#{m.getMessageNumber()}" />
                 </h:outputLink>
