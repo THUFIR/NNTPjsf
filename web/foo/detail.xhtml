@@ -26,6 +26,6 @@
         </h:form>
     </ui:define>
     <ui:define name="content">
-        <h:outputText value="#{detail.content}"></h:outputText>
+        <h:outputText escape="false" value="#{detail.content}"></h:outputText>
     </ui:define>
 </ui:composition>

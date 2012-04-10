@@ -78,13 +78,6 @@ public enum SingletonNNTP {
 
     public Message getMessage(int id) throws Exception {
         logger.log(level, "SingletonNNTP.getMessage..{0}", id);
-        Message message = messages.get(0);
-        for (Message m : messages) {
-            if (id == m.getMessageNumber()) {
-                message = m;
-            }
-            //logger.log(level, message.getContent().toString());
-        }
-        return message;
+        return folder.getMessage(id);
     }
 }

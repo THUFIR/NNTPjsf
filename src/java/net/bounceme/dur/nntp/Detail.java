@@ -58,7 +58,7 @@ public class Detail {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(String id) throws Exception {
         logger.log(level, "Detail.setId..{0}", getId());
         this.id = id;
         message = nntp.getMessage(Integer.parseInt(id));
