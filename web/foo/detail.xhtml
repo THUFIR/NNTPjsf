@@ -9,19 +9,10 @@
         <h:form>
             <h:outputLink id="back" value="detail.xhtml">
                 <f:metadata>
-                    <f:viewParam name="id" value="#{detail.message}"  />
+                    <f:viewParam name="id" value="#{detail.id}"  />
                 </f:metadata>
                 <f:param name="id" value="#{detail.back()}" />
                 <h:outputText value="back" />
-            </h:outputLink>
-        </h:form>
-        <h:form>
-            <h:outputLink id="forward" value="detail.xhtml">
-                <f:metadata>
-                    <f:viewParam name="id" value="#{detail.message}" />
-                </f:metadata>
-                <f:param name="id" value="#{detail.forward()}" />
-                <h:outputText value="forward" />
             </h:outputLink>
         </h:form>
     </ui:define>

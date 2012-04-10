@@ -13,7 +13,7 @@ public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    String id = "1529";
+    private String id = "1529";
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
@@ -27,21 +27,21 @@ public class Detail {
     }
 
     public String forward() {
-        logger.log(level, "Detail.forward..{0}", id);
-        int i = Integer.parseInt(id);
+        logger.log(level, "Detail.forward..{0}", getId());
+        int i = Integer.parseInt(getId());
         i = i + 1;
-        id = String.valueOf(i);
-        logger.log(level, "..Detail.forward {0}", id);
-        return id;
+        setId(String.valueOf(i));
+        logger.log(level, "..Detail.forward {0}", getId());
+        return getId();
     }
 
     public String back() {
-        logger.log(level, "Detail.back..{0}", id);
-        int i = Integer.parseInt(id);
+        logger.log(level, "Detail.back..{0}", getId());
+        int i = Integer.parseInt(getId());
         i = i - 1;
-        id = String.valueOf(i);
-        logger.log(level, "..Detail.back {0}", id);
-        return id;
+        setId(String.valueOf(i));
+        logger.log(level, "..Detail.back {0}", getId());
+        return getId();
     }
 
     public Message getMessage() {
@@ -55,5 +55,13 @@ public class Detail {
     public String getContent() throws Exception {
         //return message.getContent().toString();
         return "content here";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
