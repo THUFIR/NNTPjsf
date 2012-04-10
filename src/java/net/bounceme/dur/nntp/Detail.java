@@ -30,18 +30,16 @@ public class Detail {
         logger.log(level, "Detail.forward..{0}", getId());
         int i = Integer.parseInt(getId());
         i = i + 1;
-        setId(String.valueOf(i));
         logger.log(level, "..Detail.forward {0}", getId());
-        return getId();
+        return String.valueOf(i);
     }
 
     public String back() {
         logger.log(level, "Detail.back..{0}", getId());
         int i = Integer.parseInt(getId());
         i = i - 1;
-        setId(String.valueOf(i));
         logger.log(level, "..Detail.back {0}", getId());
-        return getId();
+        return String.valueOf(i);
     }
 
     public Message getMessage() {
@@ -63,5 +61,6 @@ public class Detail {
 
     public void setId(String id) {
         this.id = id;
+        message = nntp.getMessage(Integer.parseInt(id));
     }
 }
