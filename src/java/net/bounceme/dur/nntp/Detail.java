@@ -2,13 +2,12 @@ package net.bounceme.dur.nntp;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 import javax.mail.Message;
 
 @Named
+@RequestScoped
 public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
