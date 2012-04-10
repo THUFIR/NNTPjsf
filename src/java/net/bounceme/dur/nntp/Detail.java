@@ -2,7 +2,7 @@ package net.bounceme.dur.nntp;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.mail.Message;
 
@@ -48,7 +48,8 @@ public class Detail {
 
     public String getContent() throws Exception {
         logger.log(level, "Detail.getContent..");
-        setId(getId());
+        //setId(getId());
+        message = nntp.getMessage(Integer.parseInt(id));
         return message.getContent().toString();
     }
 

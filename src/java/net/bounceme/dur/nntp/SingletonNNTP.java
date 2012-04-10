@@ -1,5 +1,6 @@
 package net.bounceme.dur.nntp;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,15 +76,18 @@ public enum SingletonNNTP {
         return Collections.unmodifiableList(messages);
     }
 
-    public Message getMessage(int id) {
-        logger.log(level, "SingletonNNTP.forward..{0}", id);
+    public Message getMessage(int id) throws Exception {
+        logger.log(level, "SingletonNNTP.getMessage..{0}", id);
         Message message = messages.get(0);
-        int i = 0;
         for (Message m : messages) {
-            if (i == m.getMessageNumber()) {
-                message = messages.get(id);
+            if (id == m.getMessageNumber()) {
+                message = m;
+                logger.log(level, "***********FOUND IT************");
+            } else {
+                logger.log(level, "***********USING DEFAULT************");
             }
         }
+        //logger.log(level, message.getContent().toString());
         return message;
     }
 }
