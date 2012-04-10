@@ -82,12 +82,9 @@ public enum SingletonNNTP {
         for (Message m : messages) {
             if (id == m.getMessageNumber()) {
                 message = m;
-                logger.log(level, "***********FOUND IT************");
-            } else {
-                logger.log(level, "***********USING DEFAULT************");
             }
+            //logger.log(level, message.getContent().toString());
         }
-        //logger.log(level, message.getContent().toString());
         return message;
     }
 }
