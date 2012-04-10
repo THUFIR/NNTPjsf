@@ -18,6 +18,7 @@ public class Detail {
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
     public Detail() {
+        logger.log(level, "Detail..");
         /*
          * MessageConverter mc = new MessageConverter(); FacesContext fc =
          * FacesContext.getCurrentInstance(); String value = String.valueOf(id);
@@ -43,24 +44,30 @@ public class Detail {
     }
 
     public Message getMessage() {
+        logger.log(level, "Detail.getMessage..");
         return message;
     }
 
     public void setMessage(Message message) {
+        logger.log(level, "Detail.setMessage..");
         this.message = message;
     }
 
     public String getContent() throws Exception {
+        logger.log(level, "Detail.getContent..");
         //return message.getContent().toString();
         return "content here";
     }
 
     public String getId() {
+        logger.log(level, "Detail.getId..");
         return id;
     }
 
     public void setId(String id) {
+        logger.log(level, "Detail.setId..{0}", getId());
         this.id = id;
         message = nntp.getMessage(Integer.parseInt(id));
+        logger.log(level, "*Detail.setId..{0}", getId());
     }
 }

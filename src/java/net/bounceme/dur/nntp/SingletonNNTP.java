@@ -71,19 +71,19 @@ public enum SingletonNNTP {
     }
 
     public List<javax.mail.Message> getMessages() {
-        logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
+        logger.log(level, "SingletonNNTP.returning messages..");
         return Collections.unmodifiableList(messages);
     }
 
     public Message getMessage(int id) {
-        logger.log(level, "SingletonNNTP.forward..{0}", messages.size());
-        Message message = null;
+        logger.log(level, "SingletonNNTP.forward..{0}", id);
+        Message message = messages.get(0);
+        int i = 0;
         for (Message m : messages) {
-            int i = 0;
             if (i == m.getMessageNumber()) {
+                message = messages.get(id);
             }
         }
-        message = messages.get(id);
         return message;
     }
 }
