@@ -53,6 +53,7 @@ public class Detail {
     }
 
     public String getContent() throws Exception {
-        return message.getContent().toString();
+        //return message.getContent().toString();
+        return "content here";
     }
 }
