@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+>
+    <h:body>
+
+        <f:metadata>
+            <f:viewParam id="id" name="id" value="#{myBean.id}" />
+        </f:metadata>
+
+        <h:outputText value="#{myBean.id}"/>
+
+        <h:form>
+            <h:commandButton value="test" actionListener="#{myBean.actionMethod}"/>
+        </h:form>
+        <form method="post">
+            <input name="id" value="4" />
+            <input type="submit" value="submit" />
+        </form>
+
+    </h:body>
+</html>
