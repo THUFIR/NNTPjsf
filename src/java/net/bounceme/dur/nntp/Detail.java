@@ -3,22 +3,22 @@ package net.bounceme.dur.nntp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.mail.Message;
 
 @Named
-@Dependent
+@RequestScoped
 public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private String id = null;
+    private String id;              //seems to be null
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
-    private String forward = null;
-    private String back = null;
-    private String content = null;
+    private String forward = null;  //id + 1
+    private String back = null;     //id - 1
+    private String content = null;  //message.content
 
     public Detail() {
         logger.log(level, "Detail..");
@@ -27,7 +27,6 @@ public class Detail {
     @PostConstruct
     private void doesNotWork() {
         logger.log(level, "Detail.doesNotWork..");
-        getId();
     }
 
     public Message getMessage() {
@@ -91,4 +90,5 @@ public class Detail {
     public void setContent(String content) {
         this.content = content;
     }
+
 }
