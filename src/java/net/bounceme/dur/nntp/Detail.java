@@ -1,16 +1,18 @@
 package net.bounceme.dur.nntp;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 import javax.mail.Message;
 
 @Named
-@RequestScoped
-public class Detail {
+@ConversationScoped
+public class Detail  implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
     private String id = null;       //should never get default value in getter
