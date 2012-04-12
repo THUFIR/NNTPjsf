@@ -4,39 +4,28 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
-
-
     <body>
         <f:metadata>
-            <f:viewParam name="id" value="#{detail.id}" />
+            <f:viewParam name="id" id="id" value="#{detail.id}" />
         </f:metadata>
-
         <ui:composition template="./complexTemplate.xhtml">
-
             <ui:define name="top">
                 <h:link value="back" outcome="detail" includeViewParams="true">
                     <f:param name="id" value="#{detail.back}"/>
-
                 </h:link>
             </ui:define>
-
             <ui:define name="left">
                 left
             </ui:define>
-
             <ui:define name="right">
                 right
             </ui:define>
-
             <ui:define name="content">
                 <h:outputText value="#{detail.content}" rendered="false"/>
             </ui:define>
-
             <ui:define name="bottom">
                 bottom
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

@@ -1,16 +1,11 @@
 package net.bounceme.dur.nntp;
 
-import java.io.IOException;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.mail.Message;
-import javax.servlet.http.HttpServletResponse;
 
 @Named
 @RequestScoped
@@ -18,7 +13,7 @@ public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private String id;              //seems to be null
+    private String id = null;       //should never get default value in getter
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private String forward = null;  //id + 1
@@ -31,12 +26,7 @@ public class Detail {
 
     @PostConstruct
     private void onLoad() {
-        logger.log(level, "Detail.onLoad..");
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ExternalContext ex = fc.getExternalContext();
-        //HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
-        Map<String, Object> params = ex.getRequestMap();
-        logger.log(level, "...Detail.onLoad..{0}", params);
+        logger.log(level, "Detail.onLoad..{0}", getId());
     }
 
     public Message getMessage() {
