@@ -11,7 +11,9 @@
         <ui:composition template="./complexTemplate.xhtml">
 
             <ui:define name="top">
-                <h:commandButton value="back" action="#{detail.back}"/>
+                <h:link value="back" outcome="detail" includeViewParams="true">
+                    <f:param name="id" value="#{detail.back}"/>
+                </h:link>
             </ui:define>
 
             <ui:define name="left">
