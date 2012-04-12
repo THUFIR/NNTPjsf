@@ -25,7 +25,8 @@ public class Detail {
     }
 
     @PostConstruct
-    private void foo() {
+    private void doesNotWork() {
+        logger.log(level, "Detail.doesNotWork..");
         getId();
     }
 
@@ -43,21 +44,19 @@ public class Detail {
         logger.log(level, "Detail.getId..{0}", id);
         if (id == null) {
             logger.log(level, "Detail.getId..SETTING DEFAULT ID");
-            id = "2000";
+            id = String.valueOf(2000);
         }
         return id;
     }
 
-    public void setId(String i) throws Exception {
-        logger.log(level, "Detail.setId..{0}", i);
-        id = i;
-        //message = nntp.getMessage(Integer.parseInt(i));
+    public void setId(String id) throws Exception {
+        logger.log(level, "Detail.setId..{0}", getId());
+        this.id = id;
         logger.log(level, "..Detail.setId {0}", getId());
     }
 
-    public String getForward() throws Exception {
+    public String getForward()  {
         logger.log(level, "Detail.forward..");
-        getId();
         int f = Integer.parseInt(getId());
         f = f + 1;
         logger.log(level, "..Detail.forward {0}", f);
@@ -69,9 +68,8 @@ public class Detail {
         this.forward = forward;
     }
 
-    public String getBack() throws Exception {
+    public String getBack() {
         logger.log(level, "Detail.back..");
-        getId();
         int b = Integer.parseInt(getId());
         b = b - 1;
         logger.log(level, "..Detail.back {0}", b);
@@ -90,10 +88,7 @@ public class Detail {
         return content;
     }
 
-    public void setContent(String i) throws Exception {
-        logger.log(level, "Detail.getContent..{0}", i);
-        setId(i);
-        message = nntp.getMessage(Integer.parseInt(getId()));
-        content = message.getContent().toString();
+    public void setContent(String content) {
+        this.content = content;
     }
 }
