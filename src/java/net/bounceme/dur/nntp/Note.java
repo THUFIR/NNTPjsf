@@ -3,10 +3,7 @@ package net.bounceme.dur.nntp;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Note implements Serializable {
@@ -17,6 +14,7 @@ public class Note implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+    @Column
     private String comment = "comment here";
 
     public Note() {
