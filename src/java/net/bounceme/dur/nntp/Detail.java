@@ -26,9 +26,7 @@ public class Detail {
 
     @PostConstruct
     private void foo() throws Exception{
-        setId("1999");
-        setForward("2000");
-        setBack("1998");
+        getId();
     }
 
     public Message getMessage() {
@@ -78,24 +76,28 @@ public class Detail {
         this.note = note;
     }
 
-    public String getForward() {
-        logger.log(level, "Detail.forward..{0}", getId());
+    public String getForward() throws Exception {
+        logger.log(level, "Detail.forward..");
+        getId();
         int f = Integer.parseInt(getId());
         f = f + 1;
         logger.log(level, "..Detail.forward {0}", f);
-        return String.valueOf(f);
+        forward = String.valueOf(f);
+        return forward;
     }
 
     public void setForward(String forward) {
         this.forward = forward;
     }
 
-    public String getBack() {
-        logger.log(level, "Detail.back..{0}", getId());
+    public String getBack() throws Exception {
+        logger.log(level, "Detail.back..");
+        getId();
         int b = Integer.parseInt(getId());
         b = b - 1;
         logger.log(level, "..Detail.back {0}", b);
-        return String.valueOf(b);
+        back = String.valueOf(b);
+        return back;
     }
 
     public void setBack(String back) {

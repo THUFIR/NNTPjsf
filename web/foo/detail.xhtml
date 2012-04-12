@@ -6,28 +6,11 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="top">
-        <h:form>
-            <h:outputLink id="back" value="detail.xhtml">
-                <f:metadata>
-                    <f:viewParam name="id" value="#{detail.id}"  />
-                </f:metadata>
-                <f:param name="id" value="#{detail.back}" />
-                <h:outputText value="back" />
-            </h:outputLink>
-        </h:form>
-        <h:form>
-            <h:outputLink id="forward" value="detail.xhtml">
-                <f:metadata>
-                    <f:viewParam name="id" value="#{detail.id}"  />
-                </f:metadata>
-                <f:param name="id" value="#{detail.forward}" />
-                <h:outputText value="forward" />
-            </h:outputLink>
-        </h:form>
-    </ui:define>
-    <ui:define name="content">
-        <h:outputText escape="false" value="#{detail.content}"></h:outputText>
-    </ui:define>
-    <ui:define name="right">
+        <f:metadata>
+            <f:viewParam id="id" name="id" value="#{detail.id}"  />
+        </f:metadata>
+        <h:link value="detail" id="someId">
+            <f:param name="id" value="#{detail.back}"/>
+        </h:link>
     </ui:define>
 </ui:composition>
