@@ -11,7 +11,7 @@
                 <f:metadata>
                     <f:viewParam name="id" value="#{detail.id}"  />
                 </f:metadata>
-                <f:param name="id" value="#{detail.back()}" />
+                <f:param name="id" value="#{detail.back}" />
                 <h:outputText value="back" />
             </h:outputLink>
         </h:form>
@@ -20,7 +20,7 @@
                 <f:metadata>
                     <f:viewParam name="id" value="#{detail.id}"  />
                 </f:metadata>
-                <f:param name="id" value="#{detail.forward()}" />
+                <f:param name="id" value="#{detail.forward}" />
                 <h:outputText value="forward" />
             </h:outputLink>
         </h:form>
@@ -29,12 +29,5 @@
         <h:outputText escape="false" value="#{detail.content}"></h:outputText>
     </ui:define>
     <ui:define name="right">
-        <p>#{notes.note.id}</p>
-        <p>#{notes.note.comment}</p>
-        <h:form>
-            <h:inputText value="#{notes.note.comment}" />
-            <h:commandButton value="add note"
-                             action="#{notes.commentAction()}"/>
-        </h:form>
     </ui:define>
 </ui:composition>

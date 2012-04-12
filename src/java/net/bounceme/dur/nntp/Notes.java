@@ -26,21 +26,8 @@ public class Notes {
         this.note = note;
     }
 
-
-    /*
-     *     public String doCreateBook() {
-        book = bookEJB.createBook(book);
-        bookList = bookEJB.findBooks();
-        return "listBooks.xhtml";
-    }
-     */
     public void commentAction() {
-        logger.log(level, "Notes.newNote..");
-        //ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-        //FacesContext.getCurrentInstance().getExternalContext();
-        //HttpServletResponse response = (HttpServletResponse) context.getResponse();
-        String id = "messageIdHere";
+        logger.log(level, "Notes.newNote..");        note.setId("messageIdGoesHere");
         note.setComment("hmmm");
-        //note = NoteEJB.createNote(note);
     }
 }
