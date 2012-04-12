@@ -19,15 +19,17 @@ public class Note implements Serializable {
     private String id;
     private String comment = "comment here";
 
-    public Note(){
+    public Note() {
         logger.log(level, "Note..");
     }
 
     public String getId() {
+        logger.log(level, "Note.getId..{0}", toString());
         return id;
     }
 
     public void setId(String id) {
+        logger.log(level, "Note.setId..{0}", toString());
         this.id = id;
     }
 
@@ -53,14 +55,17 @@ public class Note implements Serializable {
 
     @Override
     public String toString() {
-        return "net.bounceme.dur.nntp.Note[ id=" + id + " ]\n";
+        return "\nnet.bounceme.dur.nntp.Note[ id=" + id + " ]"
+                + "\nnet.bounceme.dur.nntp.Note[ comment=" + comment + " ]";
     }
 
     public String getComment() {
+        logger.log(level, "Note.getComment..{0}", toString());
         return comment;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
+        logger.log(level, "Note.setComment..{0}", toString());
     }
 }

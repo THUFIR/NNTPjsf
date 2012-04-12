@@ -27,14 +27,17 @@
     </ui:define>
     <ui:define name="content">
         <h:outputText escape="false" value="#{detail.content}"></h:outputText>
+
+        #{notes.note.id(detail.id)}
+
     </ui:define>
     <ui:define name="right">
-        #{notes.foo}
-
+        <p>#{notes.note.id}</p>
+        <p>#{notes.note.comment}</p>
         <h:form>
             <h:inputText value="#{notes.note.comment}" />
             <h:commandButton value="add note"
-                             action="#{notes.comment()}"/>
+                             action="#{notes.commentAction()}"/>
         </h:form>
     </ui:define>
 </ui:composition>
