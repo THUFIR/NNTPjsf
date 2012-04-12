@@ -13,7 +13,7 @@ public class Detail {
 
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private String id;
+    private String id = null;
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private String forward = null;
@@ -82,8 +82,8 @@ public class Detail {
     }
 
     public String getContent() throws Exception {
-        logger.log(level, "Detail.getContent..");
-        message = nntp.getMessage(Integer.parseInt(id));
+        logger.log(level, "Detail.getContent..{0}", getId());
+        message = nntp.getMessage(Integer.parseInt(getId()));
         content = message.getContent().toString();
         return content;
     }
