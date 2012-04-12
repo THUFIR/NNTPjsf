@@ -16,6 +16,7 @@ public class Detail {
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
+
     public Detail() {
         logger.log(level, "Detail..");
     }

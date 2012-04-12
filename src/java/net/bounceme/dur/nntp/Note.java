@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.nntp;
 
 import java.io.Serializable;
@@ -10,10 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- *
- * @author thufir
- */
 @Entity
 public class Note implements Serializable {
     private static final long serialVersionUID = 1L;
