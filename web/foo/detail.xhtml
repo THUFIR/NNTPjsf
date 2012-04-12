@@ -7,7 +7,9 @@
 
 
     <body>
-        <f:viewParam name="id" value="#{detail.message}" converter="messageConverter" />
+        <f:metadata>
+            <f:viewParam name="id" value="#{detail.id}" />
+        </f:metadata>
 
         <ui:composition template="./complexTemplate.xhtml">
 
