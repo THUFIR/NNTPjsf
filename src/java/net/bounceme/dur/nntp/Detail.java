@@ -16,16 +16,16 @@ public class Detail {
     private String id;
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
-    private Note note = new Note();
     private String forward = null;
     private String back = null;
+    private String content = null;
 
     public Detail() {
         logger.log(level, "Detail..");
     }
 
     @PostConstruct
-    private void foo() throws Exception{
+    private void foo() {
         getId();
     }
 
@@ -39,15 +39,8 @@ public class Detail {
         this.message = message;
     }
 
-    public String getContent() throws Exception {
-        logger.log(level, "Detail.getContent..");
-        //setId(i);
-        message = nntp.getMessage(Integer.parseInt(id));
-        return message.getContent().toString();
-    }
-
     public String getId() {
-        logger.log(level, "Detail.getId.." + id);
+        logger.log(level, "Detail.getId..{0}", id);
         if (id == null) {
             logger.log(level, "Detail.getId..SETTING DEFAULT ID");
             id = "2000";
@@ -60,20 +53,6 @@ public class Detail {
         id = i;
         //message = nntp.getMessage(Integer.parseInt(i));
         logger.log(level, "..Detail.setId {0}", getId());
-    }
-
-    public void commentAction() {
-        logger.log(level, "Detail.commentAction..");
-        getNote().setId("messageIdGoesHere");
-        getNote().setComment("hmmm");
-    }
-
-    public Note getNote() {
-        return note;
-    }
-
-    public void setNote(Note note) {
-        this.note = note;
     }
 
     public String getForward() throws Exception {
@@ -102,5 +81,19 @@ public class Detail {
 
     public void setBack(String back) {
         this.back = back;
+    }
+
+    public String getContent() throws Exception {
+        logger.log(level, "Detail.getContent..");
+        message = nntp.getMessage(Integer.parseInt(id));
+        content = message.getContent().toString();
+        return content;
+    }
+
+    public void setContent(String i) throws Exception {
+        logger.log(level, "Detail.getContent..{0}", i);
+        setId(i);
+        message = nntp.getMessage(Integer.parseInt(getId()));
+        content = message.getContent().toString();
     }
 }

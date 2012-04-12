@@ -13,4 +13,11 @@
             <f:param name="id" value="#{detail.back}"/>
         </h:link>
     </ui:define>
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam id="id" name="id" value="#{detail.content}"  />
+        </f:metadata>
+        
+        <h:outputText value="#{detail.content}" rendered="false"/>
+    </ui:define>
 </ui:composition>
