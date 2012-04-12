@@ -1,13 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bounceme.dur.nntp;
 
-/**
- *
- * @author thufir
- */
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 class NoteEJB {
 
+    //@PersistenceContext(unitName = "chapter10PU")
+    //private EntityManager em;
+
+    public static Note createNote(Note note) {
+
+        return new Note();
+    }
 }

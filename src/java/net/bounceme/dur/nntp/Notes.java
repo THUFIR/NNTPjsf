@@ -41,6 +41,6 @@ public class Notes {
         //HttpServletResponse response = (HttpServletResponse) context.getResponse();
         String id = "messageIdHere";
         note.setComment("hmmm");
-        note = NoteEJB.createNote(note);
+        //note = NoteEJB.createNote(note);
     }
 }

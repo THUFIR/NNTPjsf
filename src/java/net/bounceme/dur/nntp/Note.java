@@ -16,6 +16,8 @@ public class Note implements Serializable {
     private String id;
     @Column
     private String comment = "comment here";
+    @Column
+    private String message = "some Message id";
 
     public Note() {
         logger.log(level, "Note..");
@@ -65,5 +67,13 @@ public class Note implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
         logger.log(level, "Note.setComment..{0}", toString());
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
