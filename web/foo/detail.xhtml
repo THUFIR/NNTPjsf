@@ -30,5 +30,11 @@
     </ui:define>
     <ui:define name="right">
         #{notes.foo}
+
+        <h:form>
+            <h:inputText value="#{notes.note.comment}" />
+            <h:commandButton value="add note"
+                             action="#{notes.comment()}"/>
+        </h:form>
     </ui:define>
 </ui:composition>

@@ -4,6 +4,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 
 @Named(value = "notes")
 @Dependent
@@ -31,7 +34,15 @@ public class Notes {
         return note;
     }
 
-    public void setNote(Note note) {
+    private void setNote(Note note) {
         this.note = note;
+    }
+
+    public void comment() {
+        logger.log(level, "Notes.newNote..");
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        FacesContext.getCurrentInstance().getExternalContext();
+        HttpServletResponse response = (HttpServletResponse) context.getResponse();
+    
     }
 }
