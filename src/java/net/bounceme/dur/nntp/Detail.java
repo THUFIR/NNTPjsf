@@ -3,7 +3,6 @@ package net.bounceme.dur.nntp;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 import javax.mail.Message;
@@ -15,7 +14,7 @@ public class Detail implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private String id = null;       //@PostConstruct should load id
+    private String id = null;       //@PostConstruct should load id...
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;  //id + 1
@@ -37,10 +36,12 @@ public class Detail implements Serializable {
 
     public String getId() throws Exception {
         LOG.log(level, "Detail.getId..{0}", id);
-        if (id == null) { //should never be null, should get from URL
+        if (id == null) { //should never be null, should get from URL as param
             LOG.log(level, "Detail.getId..SETTING DEFAULT ID");
             id = String.valueOf(2000);
         }
+        setForward(Integer.parseInt(id) + 1);
+        setBack(Integer.parseInt(id) - 1);
         return id;
     }
 
@@ -54,7 +55,7 @@ public class Detail implements Serializable {
 
     public int getForward() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
-        return message.getMessageNumber() + 1;
+        return forward;
     }
 
     public void setForward(int forward) {
@@ -64,7 +65,7 @@ public class Detail implements Serializable {
 
     public int getBack() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
-        return message.getMessageNumber() - 1;
+        return back;
     }
 
     public void setBack(int back) {

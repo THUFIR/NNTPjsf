@@ -12,9 +12,6 @@
             <ui:define name="top">
                 <h:link value="#{detail.id}" outcome="detail" includeViewParams="true">
                 </h:link><p/>
-                <h:outputText value="#{detail.message.messageNumber}" /><p/>
-                <h:outputText value="#{detail.message.sentDate}" /><p/>
-                <h:outputText value="#{detail.message.subject}"/><p/>
             </ui:define>
             <ui:define name="left">
                 <h:link value="back" outcome="detail" includeViewParams="true">
@@ -27,6 +24,9 @@
                 </h:link>
             </ui:define>
             <ui:define name="content">
+                <h:outputText value="#{detail.message.messageNumber}" /><p/>
+                <h:outputText value="#{detail.message.sentDate}" /><p/>
+                <h:outputText value="#{detail.message.subject}"/><p/>
                 <h:outputText value="#{detail.message.content}" escape="false"/>
             </ui:define>
             <ui:define name="bottom">
