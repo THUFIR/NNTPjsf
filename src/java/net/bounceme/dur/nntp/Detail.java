@@ -14,7 +14,7 @@ public class Detail implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private String id = null;       //@PostConstruct should load id...
+    private String id = null;       //inconsistent values...don't use
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;  //id + 1
