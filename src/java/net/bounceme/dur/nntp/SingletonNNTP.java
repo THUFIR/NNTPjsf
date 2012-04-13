@@ -45,7 +45,7 @@ public enum SingletonNNTP {
         root = store.getDefaultFolder();
         folder = root.getFolder(props.getProperty("nntp.group"));
         folder.open(Folder.READ_ONLY);
-        index = folder.getMessageCount();
+        setIndex(folder.getMessageCount());
         //folder.close(false);
         //store.close();
         setMessages();
@@ -54,20 +54,20 @@ public enum SingletonNNTP {
 
     private void setMessages() throws Exception {
         javax.mail.Message[] msgs;
-        msgs = folder.getMessages(index - 10, index);
+        msgs = folder.getMessages(getIndex() - 10, getIndex());
         messages = Arrays.asList(msgs);
         Collections.reverse(messages);
     }
 
     public void previousMessages() throws Exception {
         log.log(level, "SingletonNNTP.back..");
-        index = index - 10;
+        setIndex(getIndex() - 10);
         setMessages();
     }
 
     public void nextMessages() throws Exception {
         log.log(level, "SingletonNNTP.forward..");
-        index = index + 10;
+        setIndex(getIndex() + 10);
         setMessages();
     }
 
@@ -78,6 +78,7 @@ public enum SingletonNNTP {
 
     public Message getMessage(int id) throws Exception {
         log.log(level, "SingletonNNTP.getMessage..{0}", id);
+        setIndex(id);
         return folder.getMessage(id);
     }
 
@@ -92,5 +93,13 @@ public enum SingletonNNTP {
             }
         }
         return messageIdHeader;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }
