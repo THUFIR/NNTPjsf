@@ -19,8 +19,8 @@ public class Detail implements Serializable {
     private Message message = null;
     private int messageId = 0;      //should never be zero
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
-    private String forward = null;  //id + 1
-    private String back = null;     //id - 1
+    private int forward = 0;  //id + 1
+    private int back = 0;     //id - 1
 
     public Detail() {
         LOG.log(level, "Detail..");
@@ -29,11 +29,13 @@ public class Detail implements Serializable {
     @PostConstruct
     private void onLoad() {
         messageId = Integer.parseInt(getId());
+        forward = getMessageId() + 1;
+        back = getMessageId() - 1;
         LOG.log(level, "Detail.onLoad..{0}", getMessageId());
     }
 
     public Message getMessage() throws Exception {
-        LOG.log(level, "Detail.getMessage..{0}", getId());
+        LOG.log(level, "Detail.getMessage..{0}", getMessageId());
         message = nntp.getMessage(getMessageId());
         return message;
     }
@@ -58,37 +60,33 @@ public class Detail implements Serializable {
         LOG.log(level, "..Detail.setId {0}", getId());
     }
 
-    public String getForward() {
-        LOG.log(level, "Detail.forward..");
-        int f = Integer.parseInt(getId());
-        f++;
-        LOG.log(level, "..Detail.forward {0}", f);
-        forward = String.valueOf(f);
+    public int getForward() {
+        LOG.log(level, "Detail.forward..{0}", forward);
         return forward;
     }
 
-    public void setForward(String forward) {
+    public void setForward(int forward) {
+        LOG.log(level, "Detail.forward..{0}", forward);
         this.forward = forward;
     }
 
-    public String getBack() {
-        LOG.log(level, "Detail.back..");
-        int b = Integer.parseInt(getId());
-        b--;
-        LOG.log(level, "..Detail.back {0}", b);
-        back = String.valueOf(b);
+    public int getBack() {
+        LOG.log(level, "Detail.forward..{0}", forward);
         return back;
     }
 
-    public void setBack(String back) {
+    public void setBack(int back) {
+        LOG.log(level, "Detail.forward..{0}", forward);
         this.back = back;
     }
 
     public int getMessageId() {
+        LOG.log(level, "Detail.forward..{0}", forward);
         return messageId;
     }
 
     public void setMessageId(int messageId) {
+        LOG.log(level, "Detail.forward..{0}", forward);
         this.messageId = messageId;
     }
 }
