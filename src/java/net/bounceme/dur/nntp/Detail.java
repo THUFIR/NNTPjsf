@@ -1,5 +1,17 @@
 package net.bounceme.dur.nntp;
 
+
+/*
+ * what happens is that the messageId is always the default
+ * value loaded from id, so that only one message can
+ * ever be displayed.
+ *
+ * Basically, @PostConstruct is the wrong mechanism, it's called
+ * too early.
+ */
+
+
+
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
