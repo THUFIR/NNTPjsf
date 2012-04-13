@@ -41,23 +41,20 @@ public class Detail implements Serializable {
             LOG.log(level, "Detail.getId..SETTING DEFAULT ID");
             id = String.valueOf(2000);
         }
-        message = nntp.getMessage(Integer.parseInt(id));
-        id = String.valueOf(message.getMessageNumber());
-        setBack(message.getMessageNumber() - 1);
-        setForward(message.getMessageNumber() + 1);
         return id;
     }
 
     public void setId(String id) throws Exception {
         LOG.log(level, "Detail.setId..{0}", getId());
         this.id = id;
-        //onLoad();
+        int intId = Integer.parseInt(id);
+        message = nntp.getMessage(intId);
         LOG.log(level, "..Detail.setId {0}", getId());
     }
 
     public int getForward() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
-        return forward;
+        return message.getMessageNumber() + 1;
     }
 
     public void setForward(int forward) {
@@ -67,7 +64,7 @@ public class Detail implements Serializable {
 
     public int getBack() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
-        return back;
+        return message.getMessageNumber() - 1;
     }
 
     public void setBack(int back) {
