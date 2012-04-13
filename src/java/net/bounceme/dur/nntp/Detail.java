@@ -17,6 +17,7 @@ public class Detail implements Serializable {
     private static final Level level = Level.INFO;
     private String id = null;       //@PostConstruct should load id
     private Message message = null;
+    private int messageId = 0;      //should never be zero
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private String forward = null;  //id + 1
     private String back = null;     //id - 1
@@ -27,12 +28,13 @@ public class Detail implements Serializable {
 
     @PostConstruct
     private void onLoad() {
-        LOG.log(level, "Detail.onLoad..{0}", getId());
+        messageId = Integer.parseInt(getId());
+        LOG.log(level, "Detail.onLoad..{0}", getMessageId());
     }
 
     public Message getMessage() throws Exception {
         LOG.log(level, "Detail.getMessage..{0}", getId());
-        message = nntp.getMessage(Integer.parseInt(getId()));
+        message = nntp.getMessage(getMessageId());
         return message;
     }
 
@@ -42,9 +44,9 @@ public class Detail implements Serializable {
     }
 
     public String getId() {
-        LOG.log(level, "Detail.getIdParam..{0}", id);
+        LOG.log(level, "Detail.getId..{0}", id);
         if (id == null) { //should never be null, should get from URL
-            LOG.log(level, "Detail.getIdParam..SETTING DEFAULT ID");
+            LOG.log(level, "Detail.getId..SETTING DEFAULT ID");
             id = String.valueOf(2000);
         }
         return id;
@@ -80,5 +82,13 @@ public class Detail implements Serializable {
 
     public void setBack(String back) {
         this.back = back;
+    }
+
+    public int getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(int messageId) {
+        this.messageId = messageId;
     }
 }
