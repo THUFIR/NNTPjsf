@@ -15,7 +15,10 @@
                 </h:link>
             </ui:define>
             <ui:define name="content">
-                <h:outputText value="#{detail.content}" rendered="true" escape="false"/>
+                <h:outputText value="#{detail.message.messageNumber}" /><p/>
+                <h:outputText value="#{detail.message.sentDate}" /><p/>
+                <h:outputText value="#{detail.message.subject}"/><p/>
+                <h:outputText value="#{detail.message.getContent().toString()}" escape="false"/>
             </ui:define>
             <ui:define name="bottom">
                 bottom
