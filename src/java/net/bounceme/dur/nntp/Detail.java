@@ -17,7 +17,6 @@ public class Detail implements Serializable {
     private static final Level level = Level.INFO;
     private String id = null;       //@PostConstruct should load id
     private Message message = null;
-    //private int messageId = 0;      //@PostConstruct should set correctly
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;  //id + 1
     private int back = 0;     //id - 1
@@ -26,10 +25,18 @@ public class Detail implements Serializable {
         LOG.log(level, "Detail..");
     }
 
-    //@PostConstruct
-    private void onLoad() throws Exception {
+    @PostConstruct
+    private void onLoad() {
         LOG.log(level, "Detail.onLoad..");
-        message = nntp.getMessage(Integer.parseInt(id));
+        int foo = Integer.parseInt(getId());
+        LOG.log(level, "Detail.onLoad..foo {0}", foo);
+        try {
+            message = nntp.getMessage(Integer.parseInt(id));
+        } catch (Exception ex) {
+            Logger.getLogger(Detail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setBack(message.getMessageNumber() - 1);
+        setForward(message.getMessageNumber() + 1);
     }
 
     public Message getMessage() throws Exception {
@@ -59,8 +66,6 @@ public class Detail implements Serializable {
 
     public int getForward() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
-        onLoad();
-        forward = message.getMessageNumber() + 1;
         return forward;
     }
 
@@ -71,8 +76,6 @@ public class Detail implements Serializable {
 
     public int getBack() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
-        onLoad();
-        back = message.getMessageNumber() - 1;
         return back;
     }
 
