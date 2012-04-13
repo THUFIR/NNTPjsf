@@ -40,8 +40,6 @@ public class Detail implements Serializable {
             LOG.log(level, "Detail.getId..SETTING DEFAULT ID");
             id = String.valueOf(2000);
         }
-        setForward(Integer.parseInt(id) + 1);
-        setBack(Integer.parseInt(id) - 1);
         return id;
     }
 
@@ -50,26 +48,28 @@ public class Detail implements Serializable {
         this.id = id;
         int intId = Integer.parseInt(id);
         message = nntp.getMessage(intId);
+        setForward(Integer.parseInt(id) + 1);
+        setBack(Integer.parseInt(id) - 1);
         LOG.log(level, "..Detail.setId {0}", getId());
     }
 
     public int getForward() throws Exception {
-        LOG.log(level, "Detail.forward..{0}", forward);
+        LOG.log(level, "Detail.getForward..{0}", forward);
         return forward;
     }
 
     public void setForward(int forward) {
-        LOG.log(level, "Detail.forward..{0}", forward);
+        LOG.log(level, "Detail.setForward..{0}", forward);
         this.forward = forward;
     }
 
     public int getBack() throws Exception {
-        LOG.log(level, "Detail.forward..{0}", forward);
+        LOG.log(level, "Detail.setBack..{0}", back);
         return back;
     }
 
     public void setBack(int back) {
-        LOG.log(level, "Detail.forward..{0}", forward);
+        LOG.log(level, "Detail.setBack..{0}", back);
         this.back = back;
     }
 }
