@@ -14,7 +14,7 @@ public class Detail implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private String id = null;       //inconsistent values...don't use
+    private String id = null; //does not match Message.getMessageNumber()
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;  //id + 1
@@ -48,8 +48,8 @@ public class Detail implements Serializable {
         this.id = id;
         int intId = Integer.parseInt(id);
         message = nntp.getMessage(intId);
-        setForward(Integer.parseInt(id) + 1);
-        setBack(Integer.parseInt(id) - 1);
+        setForward(intId + 1);
+        setBack(intId - 1);
         LOG.log(level, "..Detail.setId {0}", getId());
     }
 

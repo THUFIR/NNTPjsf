@@ -25,8 +25,6 @@ public class Notes {
     private static final Logger LOG = Logger.getLogger(Notes.class.getName());
     private static final Level level = Level.INFO;
     private Note note = new Note();
-    @Inject
-    private Detail detail;
 
     public Notes() {
         LOG.log(level, "Notes..");
@@ -43,13 +41,5 @@ public class Notes {
     public void commentAction() {
         LOG.log(level, "Notes.newNote..");        note.setId("messageIdGoesHere");
         note.setComment("hmmm");
-    }
-
-    public Detail getDetail() {
-        return detail;
-    }
-
-    public void setDetail(Detail detail) {
-        this.detail = detail;
     }
 }
