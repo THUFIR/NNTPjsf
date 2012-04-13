@@ -33,7 +33,7 @@
                     <br/>
                     <h:commandButton action="#{detail.notes.action()}" value="click me"/>
                 </h:form>
-
+                        #{detail.notes.comment}
             </ui:define>
             <ui:define name="content">
                 <h:outputText value="#{detail.message.content}" escape="false"/>
