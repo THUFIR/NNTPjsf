@@ -83,7 +83,7 @@ public enum SingletonNNTP {
         return index;
     }
 
-    private void setIndex(int index) throws Exception {
+    public void setIndex(int index) throws Exception {
         log.log(Level.INFO, "SingletonNNTP.setIndex..{0}", index);
         this.index = index;
         Message[] msgs = folder.getMessages(index - 10, index);
