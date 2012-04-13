@@ -42,6 +42,7 @@ public class Detail implements Serializable {
             id = String.valueOf(2000);
         }
         message = nntp.getMessage(Integer.parseInt(id));
+        id = String.valueOf(message.getMessageNumber());
         setBack(message.getMessageNumber() - 1);
         setForward(message.getMessageNumber() + 1);
         return id;
