@@ -53,8 +53,6 @@ public enum SingletonNNTP {
         javax.mail.Message[] msgs;
         msgs = folder.getMessages(getIndex() - 10, getIndex());
         messages = Arrays.asList(msgs);
-        Message m = messages.get(0);
-        setIndex(m.getMessageNumber());
         Collections.reverse(messages);
     }
 
