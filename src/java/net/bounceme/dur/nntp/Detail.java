@@ -50,7 +50,7 @@ public class Detail implements Serializable {
         LOG.log(level, "Detail.setId..{0}", getId());
         this.id = id;
         int intId = Integer.parseInt(id);
-        message = nntp.getMessage(intId);
+        message = nntp.getMessage();
         setForward(intId + 1);
         setBack(intId - 1);
         notes.setMessage(message);
