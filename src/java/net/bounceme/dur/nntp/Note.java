@@ -3,6 +3,7 @@ package net.bounceme.dur.nntp;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +18,8 @@ public class Note implements Serializable {
     @Column
     private String comment = "comment here";
     @Column
-    private String message = "some Message id";
+     private String messageId = "some Message id";
+     //private Message message;
 
     public Note() {
         logger.log(level, "Note..");
@@ -69,11 +71,11 @@ public class Note implements Serializable {
         logger.log(level, "Note.setComment..{0}", toString());
     }
 
-    public String getMessage() {
-        return message;
+    public String getMessageId() {
+        return messageId;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
     }
 }
