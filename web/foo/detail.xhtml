@@ -11,7 +11,7 @@
         <ui:composition template="./complexTemplate.xhtml">
             <ui:define name="top">
                 <h:link value="current" outcome="detail" includeViewParams="true">
-                    <f:param name="id" value="#{detail.setId(id)}"/>
+                    <f:param name="id" value="#{detail.id}"/>
                 </h:link><p/>
                 <h:outputText value="#{detail.message.messageNumber}" /><p/>
                 <h:outputText value="#{detail.message.sentDate}" /><p/>
