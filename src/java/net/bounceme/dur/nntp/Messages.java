@@ -33,7 +33,7 @@ public class Messages implements Serializable {
     public DataModel getModel() throws Exception {
         LOG.log(LEVEL, "MessageBean.getModel..");
         List<Message> messages = new ArrayList<Message>();
-        messages = nntp.getMessages();
+        messages = nntp.getMessages(false);
         DataModel messagesDataModel = new ListDataModel(messages);
         return messagesDataModel;
     }
