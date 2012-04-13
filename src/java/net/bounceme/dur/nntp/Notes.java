@@ -1,11 +1,10 @@
 package net.bounceme.dur.nntp;
 
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 import javax.inject.Named;
-import org.omg.CORBA.Current;
 
 /*
  * @Named public class Notes {
@@ -17,7 +16,7 @@ import org.omg.CORBA.Current;
  */
 @Named
 @Dependent
-public class Notes {
+public class Notes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Notes.class.getName());

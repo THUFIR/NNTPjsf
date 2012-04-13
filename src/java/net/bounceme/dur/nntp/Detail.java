@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Message;
 
@@ -19,6 +20,8 @@ public class Detail implements Serializable {
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;
     private int back = 0;
+    @Inject
+    private Notes notes;
 
     public Detail() {
         LOG.log(level, "Detail..");
@@ -71,5 +74,13 @@ public class Detail implements Serializable {
     public void setBack(int back) {
         LOG.log(level, "Detail.setBack..{0}", back);
         this.back = back;
+    }
+
+    public Notes getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Notes notes) {
+        this.notes = notes;
     }
 }
