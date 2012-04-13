@@ -11,6 +11,16 @@
         <ui:composition template="./complexTemplate.xhtml">
             <ui:define name="top">
                 <h:outputText value="#{detail.message.subject}"/><p/>
+                <p style="text-align:left;">
+                    <h:link value="forward" outcome="detail" includeViewParams="true">
+                        <f:param name="id" value="#{detail.forward}"/>
+                    </h:link>
+                </p>
+                <p style="text-align:right;">
+                    <h:link value="back" outcome="detail" includeViewParams="true">
+                        <f:param name="id" value="#{detail.back}"/>
+                    </h:link>
+                </p>
             </ui:define>
             <ui:define name="left">
                 <h:link value="back" outcome="detail" includeViewParams="true">
@@ -18,15 +28,13 @@
                 </h:link>
             </ui:define>
             <ui:define name="right">
-                <h:link value="forward" outcome="detail" includeViewParams="true">
-                    <f:param name="id" value="#{detail.forward}"/>
-                    <p/><p/>
-                    <h:form>
-                        <h:inputText value="#{detail.notes.comment}"/>
-                        <br/>
-                        <h:commandButton action="#{detail.notes.comment}" value="click me"/>
-                    </h:form>
-                </h:link>
+                <p/><p/>
+                <h:form>
+                    <h:inputText value="#{detail.notes.comment}"/>
+                    <br/>
+                    <h:commandButton action="#{detail.notes.comment}" value="click me"/>
+                </h:form>
+
             </ui:define>
             <ui:define name="content">
                 <h:outputText value="#{detail.message.content}" escape="false"/>

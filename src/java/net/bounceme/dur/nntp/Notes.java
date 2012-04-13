@@ -48,8 +48,11 @@ public class Notes implements Serializable {
             if ("Message-ID".equals(hdr.getName())) {
                 id = hdr;
             }
+            Note note = new Note();
+            note.setMessageId(id.getValue());
+            note.setComment(comment);
+            notes.add(note);
         }
-
     }
 
     public Message getMessage() {
@@ -58,5 +61,10 @@ public class Notes implements Serializable {
 
     public void setMessage(Message message) {
         this.message = message;
+    }
+
+    public String add(String s) throws Exception {
+        setComment(s);
+        return "wtf";
     }
 }
