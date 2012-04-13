@@ -41,18 +41,12 @@ public class Notes implements Serializable {
 
     public void setComment(String comment) throws Exception {
         this.comment = comment;
-        Enumeration allHeaders = getMessage().getAllHeaders();
-        Header id = null;
-        while (id == null && allHeaders.hasMoreElements()) {
-            Header hdr = (Header) allHeaders.nextElement();
-            if ("Message-ID".equals(hdr.getName())) {
-                id = hdr;
-            }
-            Note note = new Note();
-            note.setMessageId(id.getValue());
-            note.setComment(comment);
-            notes.add(note);
-        }
+        SingletonNNTP nntp = SingletonNNTP.INSTANCE;
+        Header id = nntp.getMessageId(message.getMessageNumber());
+        Note note = new Note();
+        note.setMessageId(id.getValue());
+        note.setComment(comment);
+        notes.add(note);
     }
 
     public Message getMessage() {

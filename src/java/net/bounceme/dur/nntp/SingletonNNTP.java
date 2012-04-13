@@ -9,8 +9,8 @@ import javax.mail.*;
 public enum SingletonNNTP {
 
     INSTANCE;
-    private final Logger logger = Logger.getLogger(SingletonNNTP.class.getName());
-    private final Level level = Level.INFO;
+    private  final Logger log = Logger.getLogger(SingletonNNTP.class.getName());
+    private  final Level level = Level.INFO;
     private Properties props = new Properties();
     private List<javax.mail.Message> messages = new ArrayList<javax.mail.Message>();
     private boolean loaded = false;
@@ -20,7 +20,7 @@ public enum SingletonNNTP {
     private Store store = null;
 
     private SingletonNNTP() {
-        logger.logp(level, "SingletonNNTP", "SingletonNNTP", "only once...");
+        log.logp(level, "SingletonNNTP", "SingletonNNTP", "only once...");
         props = PropertiesReader.getProps();
         if (!loaded) {
             try {
@@ -32,12 +32,12 @@ public enum SingletonNNTP {
     }
 
     public List<javax.mail.Message> getMessages(boolean debug) throws Exception {
-        logger.logp(level, "SingletonNNTP", "getMessages", "returning messages");
+        log.logp(level, "SingletonNNTP", "getMessages", "returning messages");
         return Collections.unmodifiableList(messages);
     }
 
     private boolean connect() throws Exception {
-        logger.logp(level, "SingletonNNTP", "setMessages", "connecting to leafnode");
+        log.logp(level, "SingletonNNTP", "setMessages", "connecting to leafnode");
         Session session = Session.getDefaultInstance(props);
         session.setDebug(false);
         store = session.getStore(new URLName(props.getProperty("nntp.host")));
@@ -60,24 +60,37 @@ public enum SingletonNNTP {
     }
 
     public void previousMessages() throws Exception {
-        logger.log(level, "SingletonNNTP.back..");
+        log.log(level, "SingletonNNTP.back..");
         index = index - 10;
         setMessages();
     }
 
     public void nextMessages() throws Exception {
-        logger.log(level, "SingletonNNTP.forward..");
+        log.log(level, "SingletonNNTP.forward..");
         index = index + 10;
         setMessages();
     }
 
     public List<javax.mail.Message> getMessages() {
-        logger.log(level, "SingletonNNTP.returning messages..");
+        log.log(level, "SingletonNNTP.returning messages..");
         return Collections.unmodifiableList(messages);
     }
 
     public Message getMessage(int id) throws Exception {
-        logger.log(level, "SingletonNNTP.getMessage..{0}", id);
+        log.log(level, "SingletonNNTP.getMessage..{0}", id);
         return folder.getMessage(id);
+    }
+
+    public Header getMessageId(int id) throws Exception {
+        Enumeration allHeaders = getMessage(id).getAllHeaders();
+        Header messageIdHeader = null;
+        while (messageIdHeader == null && allHeaders.hasMoreElements()) {
+            Header header = (Header) allHeaders.nextElement();
+            log.log(level, "{0}{1}", new Object[]{header.getName(), header.getValue()});
+            if ("Message-ID".equals(header.getName())) {
+                messageIdHeader = header;
+            }
+        }
+        return messageIdHeader;
     }
 }
