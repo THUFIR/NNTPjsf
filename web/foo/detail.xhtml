@@ -8,6 +8,7 @@
         <f:metadata>
             <f:viewParam name="id" id="id" value="#{detail.id}" />
         </f:metadata>
+        #{detail.onLoad()}
         <ui:composition template="./complexTemplate.xhtml">
             <ui:define name="top">
                 <h:outputText value="#{detail.message.messageNumber}" /><p/>

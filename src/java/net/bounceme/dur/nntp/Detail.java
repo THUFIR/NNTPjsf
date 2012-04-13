@@ -26,15 +26,9 @@ public class Detail implements Serializable {
     }
 
     @PostConstruct
-    private void onLoad() {
+    private void onLoad() throws Exception {
         LOG.log(level, "Detail.onLoad..");
-        int foo = Integer.parseInt(getId());
-        LOG.log(level, "Detail.onLoad..foo {0}", foo);
-        try {
-            message = nntp.getMessage(Integer.parseInt(id));
-        } catch (Exception ex) {
-            Logger.getLogger(Detail.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        message = nntp.getMessage(Integer.parseInt(getId()));
         setBack(message.getMessageNumber() - 1);
         setForward(message.getMessageNumber() + 1);
     }
