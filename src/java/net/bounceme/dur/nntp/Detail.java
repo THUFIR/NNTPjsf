@@ -3,8 +3,8 @@ package net.bounceme.dur.nntp;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Message;
 
@@ -14,75 +14,70 @@ public class Detail implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Detail.class.getName());
-    private static final Level level = Level.INFO;
-    private String id = null; //does not match Message.getMessageNumber()
+    private String id = null;
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;
     private int back = 0;
-    @Inject
-    private Notes notes;
 
     public Detail() {
-        LOG.log(level, "Detail..");
+        LOG.info("Detail..");
+    }
+
+    @PostConstruct
+    public void configBean() {
+        int intId = Integer.parseInt(id);
+        try {
+            nntp.setIndex(intId);
+            message = nntp.getMessage();
+        } catch (Exception ex) {
+            LOG.info("Detail.configBean..failed to set message");
+        }
+        setForward(intId + 1);
+        setBack(intId - 1);
     }
 
     public Message getMessage() throws Exception {
-        LOG.log(level, "Detail.getMessage..{0}", getId());
+        LOG.info("Detail.getMessage.." + getId());
         return message;
     }
 
     public void setMessage(Message message) {
-        LOG.log(level, "Detail.setMessage..");
+        LOG.info("Detail.setMessage..");
         this.message = message;
     }
 
     public String getId() throws Exception {
-        LOG.log(level, "Detail.getId..{0}", id);
+        LOG.info("Detail.getId.." + id);
         if (id == null) { //should never be null, should get from URL as param
-            LOG.log(level, "Detail.getId..SETTING DEFAULT ID");
+            LOG.info("..setting default id");
             id = String.valueOf(2000);
         }
         return id;
     }
 
     public void setId(String id) throws Exception {
-        LOG.log(level, "Detail.setId..{0}", getId());
+        LOG.info("Detail.setId.." + id);
         this.id = id;
-        int intId = Integer.parseInt(id);
-        nntp.setIndex(intId);
-        message = nntp.getMessage();
-        setForward(intId + 1);
-        setBack(intId - 1);
-        notes.setMessage(message);
-        LOG.log(level, "..Detail.setId {0}", getId());
     }
 
     public int getForward() throws Exception {
-        LOG.log(level, "Detail.getForward..{0}", forward);
+        LOG.info("Detail.getForward.." + forward);
         return forward;
     }
 
     public void setForward(int forward) {
-        LOG.log(level, "Detail.setForward..{0}", forward);
+        LOG.info("Detail.setForward.." + forward);
         this.forward = forward;
     }
 
     public int getBack() throws Exception {
-        LOG.log(level, "Detail.setBack..{0}", back);
+        LOG.info("Detail.setBack.." + back);
         return back;
     }
 
     public void setBack(int back) {
-        LOG.log(level, "Detail.setBack..{0}", back);
+        LOG.info("Detail.setBack.." + back);
         this.back = back;
-    }
-
-    public Notes getNotes() {
-        return notes;
-    }
-
-    public void setNotes(Notes notes) {
-        this.notes = notes;
     }
 }

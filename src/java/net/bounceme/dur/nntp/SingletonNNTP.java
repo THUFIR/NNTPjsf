@@ -93,7 +93,7 @@ public enum SingletonNNTP {
     }
 
     private List<Header> getHeaders() throws Exception {
-        log.log(Level.INFO, "SingletonNNTP.getHeaders{0}", message.getSubject());
+        //log.log(Level.INFO, "SingletonNNTP.getHeaders{0}", message.getSubject());
         Enumeration allHeaders = message.getAllHeaders();
         List<Header> headers = new ArrayList<Header>();
         while (allHeaders.hasMoreElements()) {

@@ -27,13 +27,6 @@
                 <h:outputText value="#{detail.message.subject}"/><p/>
             </ui:define>
             <ui:define name="right">
-                <p/><p/>
-                <h:form>
-                    <h:inputText value="#{detail.notes.comment}"/>
-                    <br/>
-                    <h:commandButton action="#{detail.notes.action()}" value="click me"/>
-                </h:form>
-                        #{detail.notes.comment}
             </ui:define>
             <ui:define name="content">
                 <h:outputText value="#{detail.message.content}" escape="false"/>
