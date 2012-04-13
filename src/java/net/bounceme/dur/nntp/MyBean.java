@@ -1,5 +1,7 @@
 package net.bounceme.dur.nntp;
 
+//master branch
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
