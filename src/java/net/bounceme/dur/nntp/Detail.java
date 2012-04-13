@@ -20,12 +20,13 @@ public class Detail implements Serializable {
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;  //id + 1
     private int back = 0;     //id - 1
+    private String current = "current";
 
     public Detail() {
         LOG.log(level, "Detail..");
     }
 
-    @PostConstruct
+    //@PostConstruct
     private void onLoad() throws Exception {
         LOG.log(level, "Detail.onLoad..");
         message = nntp.getMessage(Integer.parseInt(getId()));
@@ -77,4 +78,20 @@ public class Detail implements Serializable {
         LOG.log(level, "Detail.forward..{0}", forward);
         this.back = back;
     }
+
+    public String getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(String current) {
+        this.current = current;
+    }
+
+    /*
+     *
+    public String getCurrent(int i) throws Exception{
+        setId(String.valueOf(i));
+        return "foo";
+    }
+     */
 }
