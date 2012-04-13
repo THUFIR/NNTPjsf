@@ -1,5 +1,7 @@
 package net.bounceme.dur.nntp;
 
+
+
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,8 +19,8 @@ public class Detail implements Serializable {
     private String id = null; //does not match Message.getMessageNumber()
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
-    private int forward = 0;  //id + 1
-    private int back = 0;     //id - 1
+    private int forward = 0;
+    private int back = 0;
 
     public Detail() {
         LOG.log(level, "Detail..");
