@@ -25,14 +25,6 @@ public class Detail implements Serializable {
         LOG.log(level, "Detail..");
     }
 
-    //@PostConstruct
-    private void onLoad() throws Exception {
-        LOG.log(level, "Detail.onLoad..");
-        message = nntp.getMessage(Integer.parseInt(getId()));
-        setBack(message.getMessageNumber() - 1);
-        setForward(message.getMessageNumber() + 1);
-    }
-
     public Message getMessage() throws Exception {
         LOG.log(level, "Detail.getMessage..{0}", getId());
         return message;
@@ -43,12 +35,15 @@ public class Detail implements Serializable {
         this.message = message;
     }
 
-    public String getId() {
+    public String getId() throws Exception {
         LOG.log(level, "Detail.getId..{0}", id);
         if (id == null) { //should never be null, should get from URL
             LOG.log(level, "Detail.getId..SETTING DEFAULT ID");
             id = String.valueOf(2000);
         }
+        message = nntp.getMessage(Integer.parseInt(id));
+        setBack(message.getMessageNumber() - 1);
+        setForward(message.getMessageNumber() + 1);
         return id;
     }
 
