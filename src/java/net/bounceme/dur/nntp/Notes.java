@@ -5,25 +5,24 @@ import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.omg.CORBA.Current;
 
 /*
- * @Named
-public class Notes {
-
-    @Inject
-    private Detail detail;
-
-}
-
+ * @Named public class Notes {
+ *
+ * @Inject private Detail detail;
+ *
+ * }
+ *
  */
-
 @Named
 @Dependent
 public class Notes {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Notes.class.getName());
-    private static final Level level = Level.INFO;
+    //@Current Logger log;
+    private final Level level = Level.INFO;
     private Note note = new Note();
 
     public Notes() {
@@ -39,7 +38,8 @@ public class Notes {
     }
 
     public void commentAction() {
-        LOG.log(level, "Notes.newNote..");        note.setId("messageIdGoesHere");
+        LOG.log(level, "Notes.newNote..");
+        note.setId("messageIdGoesHere");
         note.setComment("hmmm");
     }
 }

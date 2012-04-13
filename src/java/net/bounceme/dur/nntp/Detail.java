@@ -1,7 +1,5 @@
 package net.bounceme.dur.nntp;
 
-
-
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
