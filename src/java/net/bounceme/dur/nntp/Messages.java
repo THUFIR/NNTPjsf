@@ -8,33 +8,30 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
 import javax.mail.Header;
-import javax.mail.Message;
 
 @Named
 @SessionScoped
 public class Messages implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger logger = Logger.getLogger(Messages.class.getName());
-    private static Level level = Level.INFO;
+    private static final Logger LOG = Logger.getLogger(Messages.class.getName());
+    private static final Level LEVEL = Level.INFO;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
 
     public Messages() {
-        logger.log(level, "MessageBean..");
+        LOG.log(LEVEL, "MessageBean..");
     }
 
     public void action() throws Exception {
-        logger.log(level, "action..");
+        LOG.log(LEVEL, "action..");
     }
 
     public DataModel getModel() throws Exception {
-        logger.log(level, "MessageBean.getModel..");
+        LOG.log(LEVEL, "MessageBean.getModel..");
         List<javax.mail.Message> messages = new ArrayList<javax.mail.Message>();
         messages = nntp.getMessages();
         DataModel messagesDataModel = new ListDataModel(messages);
@@ -65,17 +62,17 @@ public class Messages implements Serializable {
     }
 
     public void forward() throws Exception {
-        logger.log(level, "MessageBean.forward..");
+        LOG.log(LEVEL, "MessageBean.forward..");
         nntp.nextMessages();
     }
 
     public void back() throws Exception {
-        logger.log(level, "MessageBean.back..");
+        LOG.log(LEVEL, "MessageBean.back..");
         nntp.previousMessages();
     }
 
     public String detail() throws Exception {
-        logger.log(level, "MessageBean.detail..");
+        LOG.log(LEVEL, "MessageBean.detail..");
         return "detail.xhtml";
     }
 }
