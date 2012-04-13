@@ -14,14 +14,8 @@
                     <f:param name="id" value="#{detail.back}"/>
                 </h:link>
             </ui:define>
-            <ui:define name="left">
-                left
-            </ui:define>
-            <ui:define name="right">
-                right
-            </ui:define>
             <ui:define name="content">
-                <h:outputText value="#{detail.content}" rendered="false"/>
+                <h:outputText value="#{detail.content}" rendered="true" escape="false"/>
             </ui:define>
             <ui:define name="bottom">
                 bottom

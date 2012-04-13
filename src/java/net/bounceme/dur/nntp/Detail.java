@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Message;
 
@@ -15,7 +16,7 @@ public class Detail  implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = Logger.getLogger(Detail.class.getName());
     private static final Level level = Level.INFO;
-    private String id = null;       //should never get default value in getter
+    private String id;       //should never get default value in getter
     private Message message = null;
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private String forward = null;  //id + 1
