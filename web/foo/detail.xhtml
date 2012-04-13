@@ -10,7 +10,6 @@
         </f:metadata>
         <ui:composition template="./complexTemplate.xhtml">
             <ui:define name="top">
-
                 <div style="float: left">
                     <h:link value="back" outcome="detail" includeViewParams="true">
                         <f:param name="id" value="#{detail.back}"/>
@@ -22,8 +21,6 @@
                     </h:link>
                 </div>
                 <p align="center"><h:outputText value="#{detail.message.messageNumber}" /></p>
-
-
             </ui:define>
             <ui:define name="left">
                 <h:outputText value="#{detail.message.sentDate}" /><p/>
@@ -34,7 +31,7 @@
                 <h:form>
                     <h:inputText value="#{detail.notes.comment}"/>
                     <br/>
-                    <h:commandButton action="#{detail.notes.comment(comment)}" value="click me"/>
+                    <h:commandButton action="#{detail.notes.action()}" value="click me"/>
                 </h:form>
 
             </ui:define>

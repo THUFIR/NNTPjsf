@@ -18,13 +18,13 @@ public class Notes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Notes.class.getName());
-    private final Level level = Level.INFO;
+    private final Level LEVEL = Level.INFO;
     private List<Note> notes = new ArrayList<Note>();
     private String comment = "some comment";
     private Message message;
 
     public Notes() {
-        LOG.log(level, "Notes..");
+        LOG.log(LEVEL, "Notes..");
     }
 
     public List<Note> getNotes() {
@@ -39,14 +39,8 @@ public class Notes implements Serializable {
         return comment;
     }
 
-    public void setComment(String comment) throws Exception {
+    public void setComment(String comment) {
         this.comment = comment;
-        SingletonNNTP nntp = SingletonNNTP.INSTANCE;
-        Header id = nntp.getMessageId(message.getMessageNumber());
-        Note note = new Note();
-        note.setMessageId(id.getValue());
-        note.setComment(comment);
-        notes.add(note);
     }
 
     public Message getMessage() {
@@ -57,8 +51,14 @@ public class Notes implements Serializable {
         this.message = message;
     }
 
-    public String add(String s) throws Exception {
-        setComment(s);
+    public String action() throws Exception {
+        LOG.log(LEVEL, getComment());
+        SingletonNNTP nntp = SingletonNNTP.INSTANCE;
+        Header id = nntp.getMessageId(message.getMessageNumber());
+        Note note = new Note();
+        note.setMessageId(id.getValue());
+        note.setComment(comment);
+        notes.add(note);
         return "wtf";
     }
 }
