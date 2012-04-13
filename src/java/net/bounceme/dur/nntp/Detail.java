@@ -1,17 +1,5 @@
 package net.bounceme.dur.nntp;
 
-
-/*
- * what happens is that the messageId is always the default
- * value loaded from id, so that only one message can
- * ever be displayed.
- *
- * Basically, @PostConstruct is the wrong mechanism, it's called
- * too early.
- */
-
-
-
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +17,7 @@ public class Detail implements Serializable {
     private static final Level level = Level.INFO;
     private String id = null;       //@PostConstruct should load id
     private Message message = null;
-    private int messageId = 0;      //@PostConstruct should set correctly
+    //private int messageId = 0;      //@PostConstruct should set correctly
     private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
     private int forward = 0;  //id + 1
     private int back = 0;     //id - 1
@@ -38,22 +26,14 @@ public class Detail implements Serializable {
         LOG.log(level, "Detail..");
     }
 
-    @PostConstruct
-    private void onLoad() {
+    //@PostConstruct
+    private void onLoad() throws Exception {
         LOG.log(level, "Detail.onLoad..");
-        setMessageId(Integer.parseInt(getId()));
-        forward = getMessageId() + 1;
-        back = getMessageId() - 1;
-        try {
-            message = nntp.getMessage(getMessageId());
-        } catch (Exception ex) {
-            Logger.getLogger(Detail.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        LOG.log(level, "..Detail.onLoad {0}", getMessageId());
+        message = nntp.getMessage(Integer.parseInt(id));
     }
 
-    public Message getMessage() {
-        LOG.log(level, "Detail.getMessage..{0}", getMessageId());
+    public Message getMessage() throws Exception {
+        LOG.log(level, "Detail.getMessage..{0}", getId());
         return message;
     }
 
@@ -77,8 +57,10 @@ public class Detail implements Serializable {
         LOG.log(level, "..Detail.setId {0}", getId());
     }
 
-    public int getForward() {
+    public int getForward() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
+        onLoad();
+        forward = message.getMessageNumber() + 1;
         return forward;
     }
 
@@ -87,23 +69,15 @@ public class Detail implements Serializable {
         this.forward = forward;
     }
 
-    public int getBack() {
+    public int getBack() throws Exception {
         LOG.log(level, "Detail.forward..{0}", forward);
+        onLoad();
+        back = message.getMessageNumber() - 1;
         return back;
     }
 
     public void setBack(int back) {
         LOG.log(level, "Detail.forward..{0}", forward);
         this.back = back;
-    }
-
-    public int getMessageId() {
-        LOG.log(level, "Detail.forward..{0}", forward);
-        return messageId;
-    }
-
-    public void setMessageId(int messageId) {
-        LOG.log(level, "Detail.forward..{0}", forward);
-        this.messageId = messageId;
     }
 }
