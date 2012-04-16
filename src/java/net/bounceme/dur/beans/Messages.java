@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -19,20 +19,25 @@ public class Messages implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Messages.class.getName());
-    private static final Level LEVEL = Level.INFO;
-    private SingletonNNTP nntp = SingletonNNTP.INSTANCE;
+    private SingletonNNTP nntp;
     private URL url = null;
 
+    @PostConstruct
+    public void foo() {
+        LOG.info("MessageBean.foo..");
+        nntp = SingletonNNTP.INSTANCE;
+    }
+
     public Messages() {
-        LOG.log(LEVEL, "MessageBean..");
+        LOG.info("MessageBean..");
     }
 
     public void action() throws Exception {
-        LOG.log(LEVEL, "action..");
+        LOG.info("action..");
     }
 
     public DataModel getModel() throws Exception {
-        LOG.log(LEVEL, "MessageBean.getModel..");
+        LOG.info("MessageBean.getModel..");
         List<Message> messages = new ArrayList<Message>();
         messages = nntp.getMessages(false);
         DataModel messagesDataModel = new ListDataModel(messages);
@@ -40,28 +45,28 @@ public class Messages implements Serializable {
     }
 
     public void forward() throws Exception {
-        LOG.log(LEVEL, "MessageBean.forward..");
-        nntp.nextMessages();
+        LOG.info("MessageBean.forward..");
+        nntp.page(false);
     }
 
     public void back() throws Exception {
-        LOG.log(LEVEL, "MessageBean.back..");
-        nntp.previousMessages();
+        LOG.info("MessageBean.back..");
+        nntp.page(true);
     }
 
     public String detail() throws Exception {
-        LOG.log(LEVEL, "MessageBean.detail..");
+        LOG.info("MessageBean.detail..");
         return "detail.xhtml";
     }
 
     public String detail(Message m) throws Exception {
-        LOG.log(LEVEL, "MessageBean.detail..");
+        LOG.info("MessageBean.detail..");
         return "detail.xhtml";
     }
 
     public URL getUrl(Message m) throws Exception {
-        int i = m.getMessageNumber();
-        url = nntp.getUrl(i);
+        LOG.info("MessageBean.getUrl..");
+        url = nntp.getUrl();
         return url;
     }
 }

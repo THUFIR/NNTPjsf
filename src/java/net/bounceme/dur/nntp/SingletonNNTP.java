@@ -45,22 +45,19 @@ public enum SingletonNNTP {
         root = store.getDefaultFolder();
         folder = root.getFolder(props.getProperty("nntp.group"));
         folder.open(Folder.READ_ONLY);
-        page(folder.getMessageCount() - 20);
+        setIndex(folder.getMessageCount() - 10);
+        page(true);
         return true;
-    }
-
-    public void previousMessages() throws Exception {
-        log.info("SingletonNNTP.back..");
-        page(getIndex() - 10);
-    }
-
-    public void nextMessages() throws Exception {
-        log.info("SingletonNNTP.forward..");
-        page(getIndex() + 10);
     }
 
     public Message getMessage() throws Exception {
         log.info("SingletonNNTP.getMessage..");
+        for (Message m : messages) {
+            if (m.getMessageNumber() == index) {
+                message = m;
+                log.info("SingletonNNTP.getMessage found " + index);
+            }
+        }
         return message;
     }
 
@@ -88,9 +85,10 @@ public enum SingletonNNTP {
         this.index = index;
     }
 
-    private void page(int index) throws Exception {
+    public void page(boolean back) throws Exception {
         log.log(Level.INFO, "SingletonNNTP.page..{0}", index);
-        this.index = index;
+        int difference = back ? -10 : 10;
+        setIndex(index + difference);
         Message[] msgs = folder.getMessages(index - 10, index);
         messages = Arrays.asList(msgs);
         Collections.reverse(messages);
@@ -98,8 +96,7 @@ public enum SingletonNNTP {
     }
 
     private List<Header> getHeaders() throws Exception {
-        //log.log(Level.INFO, "SingletonNNTP.getHeaders{0}", message.getSubject());
-        Enumeration allHeaders = message.getAllHeaders();
+        Enumeration allHeaders = getMessage().getAllHeaders();
         List<Header> headers = new ArrayList<Header>();
         while (allHeaders.hasMoreElements()) {
             Header hdr = (Header) allHeaders.nextElement();
@@ -108,8 +105,7 @@ public enum SingletonNNTP {
         return headers;
     }
 
-    public URL getUrl(int i) throws Exception {
-        setIndex(i);
+    public URL getUrl() throws Exception {
         List<Header> headers = getHeaders();
         URL url = new URL("http://www.google.com/");
         for (Header h : headers) {
