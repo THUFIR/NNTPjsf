@@ -1,4 +1,4 @@
-package net.bounceme.dur.nntp;
+package net.bounceme.dur.beans;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -11,6 +11,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
 import javax.mail.Message;
+import net.bounceme.dur.nntp.SingletonNNTP;
 
 @Named
 @ConversationScoped
@@ -53,11 +54,14 @@ public class Messages implements Serializable {
         return "detail.xhtml";
     }
 
+    public String detail(Message m) throws Exception {
+        LOG.log(LEVEL, "MessageBean.detail..");
+        return "detail.xhtml";
+    }
+
     public URL getUrl(Message m) throws Exception {
         int i = m.getMessageNumber();
         url = nntp.getUrl(i);
         return url;
     }
-
-
 }

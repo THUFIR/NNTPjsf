@@ -1,4 +1,4 @@
-package net.bounceme.dur.nntp;
+package net.bounceme.dur.beans;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 import javax.mail.Message;
+import net.bounceme.dur.nntp.SingletonNNTP;
 
 @Named
 @ConversationScoped

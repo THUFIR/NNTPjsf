@@ -1,5 +1,6 @@
 package net.bounceme.dur.nntp;
 
+import net.bounceme.dur.beans.Detail;
 import java.io.IOException;
 import static java.lang.System.out;
 import java.util.*;

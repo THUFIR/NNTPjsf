@@ -1,7 +1,8 @@
-package net.bounceme.dur.nntp;
+package net.bounceme.dur.beans;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import net.bounceme.dur.nntp.Note;
 
 class NoteEJB {
 

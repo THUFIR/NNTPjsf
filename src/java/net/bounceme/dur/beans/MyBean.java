@@ -1,4 +1,4 @@
-package net.bounceme.dur.nntp;
+package net.bounceme.dur.beans;
 
 //postconstruct
 

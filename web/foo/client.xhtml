@@ -30,20 +30,12 @@
                 <f:facet name="id">
                     <h:outputText value="id" />
                 </f:facet>
-                <h:commandLink action="#{messages.detail(m)}"
-                               value="#{m.getMessageNumber()}">
-                    <f:setPropertyActionListener target="#{requestScope.article}" value="#{book}"/>
-                    <h:outputText value="#{m.getMessageNumber()}" />
-                </h:commandLink>
-            </h:column>
-            <h:column>
-                <f:facet name="id">
-                    <h:outputText value="id" />
-                </f:facet>
-                <h:outputLink id="hmmm" value="detail.xhtml">
-                    <f:param name="id" value="#{m.getMessageNumber()}" />
-                    <h:outputText value="#{m.getMessageNumber()}" />
-                </h:outputLink>
+                <h:form>
+                    <h:commandLink action="#{messages.detail(m)}"
+                                   value="#{m.getMessageNumber()}">
+                        <f:setPropertyActionListener target="#{requestScope.article}" value="#{book}"/>
+                    </h:commandLink>
+                </h:form>
             </h:column>
             <h:column>
                 <f:facet name="subject">
