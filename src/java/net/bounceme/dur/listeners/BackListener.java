@@ -1,8 +1,12 @@
 package net.bounceme.dur.listeners;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
+import net.bounceme.dur.beans.Messages;
+import net.bounceme.dur.nntp.SingletonNNTP;
 
 public class BackListener implements ActionListener {
 
@@ -15,8 +19,13 @@ public class BackListener implements ActionListener {
      * the "target" ValueExpression
      *
      */
+    private static final long serialVersionUID = 1L;
+    private static final Logger LOG = Logger.getLogger(BackListener.class.getName());
+
     @Override
     public void processAction(ActionEvent event) throws AbortProcessingException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        LOG.info("BackListener.processAction..");
+        SingletonNNTP nntp = SingletonNNTP.INSTANCE;
+        LOG.info("..BackListener.processAction");
     }
 }

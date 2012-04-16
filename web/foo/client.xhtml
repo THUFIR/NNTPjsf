@@ -10,7 +10,7 @@
         <div style="float: left">
             <h:form>
                 <h:commandLink action="#{messages.back()}">
-                    <f:actionListener type="net.bounceme.dur.listeners.MyListener" />
+                    <f:actionListener type="net.bounceme.dur.listeners.BackListener" />
                     <h:outputText value="..back"/>
                 </h:commandLink>
             </h:form>
@@ -18,7 +18,7 @@
         <div style="float: right">
             <h:form>
                 <h:commandLink action="#{messages.forward()}">
-                    <f:actionListener type="net.bounceme.dur.listeners.MyListener" />
+                    <f:actionListener type="net.bounceme.dur.listeners.BackListener" />
                     <h:outputText value="..forward"/>
                 </h:commandLink>
             </h:form>
