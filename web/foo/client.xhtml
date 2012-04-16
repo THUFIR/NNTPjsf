@@ -4,16 +4,23 @@
                 template="./template.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="top">
         <div style="float: left">
             <h:form>
-                <h:commandButton action="#{messages.back()}" value="..back" />
+                <h:commandLink action="#{messages.back()}">
+                    <f:actionListener type="net.bounceme.dur.listeners.MyListener" />
+                    <h:outputText value="..back"/>
+                </h:commandLink>
             </h:form>
         </div>
         <div style="float: right">
             <h:form>
-                <h:commandButton action="#{messages.forward()}" value="forward.." />
+                <h:commandLink action="#{messages.forward()}">
+                    <f:actionListener type="net.bounceme.dur.listeners.MyListener" />
+                    <h:outputText value="..forward"/>
+                </h:commandLink>
             </h:form>
         </div>
     </ui:define>
