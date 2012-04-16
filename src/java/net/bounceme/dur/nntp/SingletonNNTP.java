@@ -45,7 +45,8 @@ public enum SingletonNNTP {
         root = store.getDefaultFolder();
         folder = root.getFolder(props.getProperty("nntp.group"));
         folder.open(Folder.READ_ONLY);
-        setIndex(folder.getMessageCount() - 10);
+        setIndex(folder.getMessageCount());
+        index = index + 10;
         page(true);
         return true;
     }

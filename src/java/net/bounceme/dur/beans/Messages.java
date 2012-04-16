@@ -24,12 +24,12 @@ public class Messages implements Serializable {
 
     @PostConstruct
     public void foo() {
-        LOG.info("MessageBean.foo..");
+        LOG.info("Messages.foo..");
         nntp = SingletonNNTP.INSTANCE;
     }
 
     public Messages() {
-        LOG.info("MessageBean..");
+        LOG.info("Messages..");
     }
 
     public void action() throws Exception {
@@ -37,7 +37,7 @@ public class Messages implements Serializable {
     }
 
     public DataModel getModel() throws Exception {
-        LOG.info("MessageBean.getModel..");
+        LOG.info("Messages.getModel..");
         List<Message> messages = new ArrayList<Message>();
         messages = nntp.getMessages(false);
         DataModel messagesDataModel = new ListDataModel(messages);
@@ -45,27 +45,27 @@ public class Messages implements Serializable {
     }
 
     public void forward() throws Exception {
-        LOG.info("MessageBean.forward..");
+        LOG.info("Messages.forward..");
         nntp.page(false);
     }
 
     public void back() throws Exception {
-        LOG.info("MessageBean.back..");
+        LOG.info("Messages.back..");
         nntp.page(true);
     }
 
     public String detail() throws Exception {
-        LOG.info("MessageBean.detail..");
+        LOG.info("Messages.detail..");
         return "detail.xhtml";
     }
 
     public String detail(Message m) throws Exception {
-        LOG.info("MessageBean.detail..");
+        LOG.info("Messages.detail..");
         return "detail.xhtml";
     }
 
     public URL getUrl(Message m) throws Exception {
-        LOG.info("MessageBean.getUrl..");
+        LOG.info("Messages.getUrl..");
         url = MessageUtils.getUrl(m);
         return url;
     }
