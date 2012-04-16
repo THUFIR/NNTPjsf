@@ -33,7 +33,7 @@
                 <h:form>
                     <h:commandLink action="#{messages.detail(m)}"
                                    value="#{m.getMessageNumber()}">
-                        <f:setPropertyActionListener target="#{requestScope.article}" value="#{book}"/>
+                        <f:setPropertyActionListener target="#{article}" value="#{book}"/>
                     </h:commandLink>
                 </h:form>
             </h:column>
@@ -58,3 +58,4 @@
         </h:dataTable>
     </ui:define>
 </ui:composition>
+
