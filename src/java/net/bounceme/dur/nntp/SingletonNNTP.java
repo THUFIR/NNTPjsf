@@ -61,20 +61,6 @@ public enum SingletonNNTP {
         return message;
     }
 
-    public Header getMessageId(int id) throws Exception {
-        Enumeration allHeaders = getMessage().getAllHeaders();
-        Header messageIdHeader = null;
-        while (messageIdHeader == null && allHeaders.hasMoreElements()) {
-            Header header = (Header) allHeaders.nextElement();
-            log.info(header.getName());
-            log.info(header.getValue());
-            if ("Message-ID".equals(header.getName())) {
-                messageIdHeader = header;
-            }
-        }
-        return messageIdHeader;
-    }
-
     public int getIndex() {
         log.log(Level.INFO, "SingletonNNTP.getIndex..{0}", index);
         return index;
@@ -93,28 +79,5 @@ public enum SingletonNNTP {
         messages = Arrays.asList(msgs);
         Collections.reverse(messages);
         message = messages.get(0);
-    }
-
-    private List<Header> getHeaders() throws Exception {
-        Enumeration allHeaders = getMessage().getAllHeaders();
-        List<Header> headers = new ArrayList<Header>();
-        while (allHeaders.hasMoreElements()) {
-            Header hdr = (Header) allHeaders.nextElement();
-            headers.add(hdr);
-        }
-        return headers;
-    }
-
-    public URL getUrl() throws Exception {
-        List<Header> headers = getHeaders();
-        URL url = new URL("http://www.google.com/");
-        for (Header h : headers) {
-            if ("Archived-at".equals(h.getName())) {
-                String stringUrl = h.getValue();
-                stringUrl = stringUrl.substring(1, stringUrl.length() - 1);
-                url = new URL(stringUrl);
-            }
-        }
-        return url;
     }
 }

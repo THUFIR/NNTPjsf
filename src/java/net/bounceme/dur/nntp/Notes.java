@@ -11,6 +11,7 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.mail.Header;
 import javax.mail.Message;
+import net.bounceme.dur.beans.MessageUtils;
 
 @Named
 @Dependent
@@ -54,9 +55,8 @@ public class Notes implements Serializable {
     public String action() throws Exception {
         LOG.log(LEVEL, getComment());
         SingletonNNTP nntp = SingletonNNTP.INSTANCE;
-        Header id = nntp.getMessageId(message.getMessageNumber());
         Note note = new Note();
-        note.setMessageId(id.getValue());
+        //note.setMessageId(MessageUtils.getMessageId(message));
         note.setComment(comment);
         notes.add(note);
         return "wtf";

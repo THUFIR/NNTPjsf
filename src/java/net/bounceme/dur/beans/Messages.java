@@ -3,6 +3,7 @@ package net.bounceme.dur.beans;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -10,6 +11,7 @@ import javax.enterprise.context.ConversationScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
+import javax.mail.Header;
 import javax.mail.Message;
 import net.bounceme.dur.nntp.SingletonNNTP;
 
@@ -66,7 +68,10 @@ public class Messages implements Serializable {
 
     public URL getUrl(Message m) throws Exception {
         LOG.info("MessageBean.getUrl..");
-        url = nntp.getUrl();
+        url = MessageUtils.getUrl(m);
         return url;
     }
+
+
+
 }
