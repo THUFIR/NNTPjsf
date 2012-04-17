@@ -5,10 +5,10 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 
-public class DetailListener implements ActionListener {
+public class DetailConverter implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(DetailListener.class.getName());
+    private static final Logger LOG = Logger.getLogger(DetailConverter.class.getName());
 
     @Override
     public void processAction(ActionEvent event) throws AbortProcessingException {
