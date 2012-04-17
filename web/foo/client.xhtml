@@ -33,7 +33,7 @@
                 <h:form>
                     <h:commandLink action="#{messages.detail(m)}">
                         <f:actionListener type="net.bounceme.dur.listeners.DetailListener"/>
-                        <h:outputText value="#{m.getMessageNumber()}" converter="detailConverter"/>
+                        <h:outputText value="#{m.getMessageNumber()}" converter="messageConverter"/>
                     </h:commandLink>
                 </h:form>
             </h:column>
@@ -44,10 +44,15 @@
                 <h:outputText value="#{m.subject}"></h:outputText>
             </h:column>
             <h:column>
-                <f:facet name="content">
-                    <h:outputText value="content" />
+                <f:facet name="date">
+                    <h:outputText value="date" />
                 </f:facet>
-                <h:outputText value="#{m.sentDate}"></h:outputText>
+                <h:form>
+                    <h:commandLink action="#{messages.detail(m)}">
+                        <f:actionListener type="net.bounceme.dur.listeners.DetailListener"/>
+                        <h:outputText value="#{m.getMessageNumber()}" converter="messageConverter"/>
+                    </h:commandLink>
+                </h:form>
             </h:column>
             <h:column>
                 <f:facet name="date">
