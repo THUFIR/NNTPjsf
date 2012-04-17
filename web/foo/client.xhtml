@@ -33,7 +33,7 @@
                 <h:form>
                     <h:commandLink action="#{messages.detail(m)}">
                         <f:actionListener type="net.bounceme.dur.listeners.DetailListener"/>
-                        <h:outputText value="#{m.getMessageNumber()}" converter="net.bounceme.dur.listeners.DetailConverter"/>
+                        <h:outputText value="#{m.getMessageNumber()}" converter="detailConverter"/>
                     </h:commandLink>
                 </h:form>
             </h:column>
