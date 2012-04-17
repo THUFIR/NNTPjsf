@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
-import javax.inject.Inject;
+import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 import javax.mail.Message;
 
@@ -15,7 +15,8 @@ public class MessageBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(MessageBean.class.getName());
-    @Inject
+    @Named
+    @Produces
     private Message message;
     private URL url = null;
 

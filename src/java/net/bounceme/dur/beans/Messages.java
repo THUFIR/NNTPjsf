@@ -59,5 +59,4 @@ public class Messages implements Serializable {
     public void setMessageBean(MessageBean messageBean) {
         this.messageBean = messageBean;
     }
-
 }
