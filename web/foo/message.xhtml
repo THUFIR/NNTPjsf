@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+        <f:metadata>
+            <f:viewParam name="id" id="id" value="#{detail.id}" />
+        </f:metadata>
+        <ui:composition template="./complexTemplate.xhtml">
+            <ui:define name="top">
+                <div style="float: left">
+                    <h:link value="back" outcome="detail" includeViewParams="true">
+                        <f:param name="id" value="#{detail.back}"/>
+                    </h:link>
+                </div>
+                <div style="float: right">
+                    <h:link value="forward" outcome="detail" includeViewParams="true">
+                        <f:param name="id" value="#{detail.forward}"/>
+                    </h:link>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
