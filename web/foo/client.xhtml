@@ -33,12 +33,12 @@
                     <h:outputText value="id" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink action="#{messages.insert(m)}" value="#{m.messageNumber}" />
+                    <h:commandLink action="#{messageBean.message(m)}" value="#{m.messageNumber}" />
                 </h:form>
                 <ui:remove>
                     <h:outputLink id="hmmm" value="message.xhtml">
-                        <f:param name="id" value="#{m.getMessageNumber()}" />
-                        <h:outputText value="#{m.getMessageNumber()}" />
+                        <f:param name="id" value="#{m.messageNumber}" />
+                        <h:outputText value="#{m.messageNumber}" />
                     </h:outputLink>
                 </ui:remove>
             </h:column>
