@@ -36,7 +36,7 @@
                     <h:commandLink action="#{messageBean.message(m)}" value="#{m.messageNumber}" />
                 </h:form>
                 <ui:remove>
-                    <h:outputLink id="hmmm" value="message.xhtml">
+                    <h:outputLink id="msgId" value="message.xhtml">
                         <f:param name="id" value="#{m.messageNumber}" />
                         <h:outputText value="#{m.messageNumber}" />
                     </h:outputLink>
