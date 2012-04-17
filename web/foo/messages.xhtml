@@ -34,7 +34,6 @@
                 </f:facet>
                 <h:form>
                     <h:commandLink id="messageLink" action="#{messageBean.setMessage(m)}">
-                        <f:actionListener type="net.bounceme.dur.listeners.MessageListener" />
                         <h:outputText value="#{m.messageNumber}"/>
                     </h:commandLink>
                 </h:form>
