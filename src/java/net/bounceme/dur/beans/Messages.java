@@ -54,11 +54,6 @@ public class Messages implements Serializable {
         nntp.page(true);
     }
 
-    public String detail() throws Exception {
-        LOG.info("Messages.detail..");
-        return "detail.xhtml";
-    }
-
     public String detail(Message m) throws Exception {
         LOG.info("Messages.detail..");
         return "detail.xhtml";
