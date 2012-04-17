@@ -22,12 +22,13 @@ public class Messages implements Serializable {
     private SingletonNNTP nntp;
     private URL url = null;
     private DataModel messagesDataModel = null;
+    private List<Message> messages = null;
 
     @PostConstruct
     public void foo() throws Exception {
         LOG.info("Messages.foo..");
         nntp = SingletonNNTP.INSTANCE;
-        List<Message> messages = new ArrayList<Message>();
+        messages = new ArrayList<Message>();
         messages = nntp.getMessages(false);
         messagesDataModel = new ListDataModel(messages);
     }
