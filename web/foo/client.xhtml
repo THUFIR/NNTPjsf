@@ -33,10 +33,10 @@
                     <h:outputText value="id" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="messageLink" action="bookstore">
+                    <h:commandLink id="messageLink" action="#{messageBean.message(m)}">
                         <f:actionListener
                             type="net.bounceme.dur.listeners.MessageListener" />
-                        <h:outputText value="#{bundle.Book201}"/>
+                        <h:outputText value="#{m.messageNumber}"/>
                     </h:commandLink>
                 </h:form>
                 <ui:remove>
