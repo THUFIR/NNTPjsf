@@ -6,20 +6,24 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <body>
         <f:metadata>
-            <f:viewParam name="id" id="id" value="#{messageBean.id}" />
+            <f:viewParam name="id" value="#{messageBean.id}" converter="messageConverter" />
         </f:metadata>
         <ui:composition template="./complexTemplate.xhtml">
             <ui:define name="top">
                 <div style="float: left">
-                    <h:link value="back" outcome="detail" includeViewParams="true">
-                        <f:param name="id" value="#{detail.back}"/>
+                    <h:link value="previous" outcome="message" includeViewParams="true">
+                        <f:param name="id" value="#{messageBean.previous}"/>
                     </h:link>
                 </div>
                 <div style="float: right">
-                    <h:link value="forward" outcome="detail" includeViewParams="true">
-                        <f:param name="id" value="#{detail.forward}"/>
+                    <h:link value="next" outcome="message" includeViewParams="true">
+                        <f:param name="id" value="#{messageBean.next}"/>
                     </h:link>
                 </div>
+            </ui:define>
+            <ui:define name="content">
+                #{messageBean.message.content}
+
             </ui:define>
         </ui:composition>
     </body>

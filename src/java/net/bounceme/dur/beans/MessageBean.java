@@ -39,45 +39,52 @@ public class MessageBean implements Serializable {
     }
 
     public Message getMessage() {
-        LOG.info("MessageBean.getMessage..");
+        LOG.info("MessageBean.getMessage.." + message.getMessageNumber());
         return message;
     }
 
     public void setMessage(Message message) {
-        LOG.info("MessageBean.setMessage..");
+        LOG.info("MessageBean.setMessage.." + message.getMessageNumber());
         this.message = message;
     }
 
     public URL getUrl() throws Exception {
-        LOG.info("MessageBean.getUrl..");
+        LOG.info("MessageBean.getUrl.." + url.toString());
         return url;
     }
 
     public void setUrl(URL url) {
+        LOG.info("MessageBean.setUrl.." + url.toString());
         this.url = url;
     }
 
     public int getId() {
+        LOG.info("MessageBean.getId.." + id);
         return id;
     }
 
     public void setId(int id) {
+        LOG.info("MessageBean.setId.." + id);
         this.id = id;
     }
 
     public int getPrevious() {
+        LOG.info("MessageBean.getPrevious.." + previous);
         return previous;
     }
 
     public void setPrevious(int previous) {
+        LOG.info("MessageBean.setPrevious.." + previous);
         this.previous = previous;
     }
 
     public int getNext() {
+        LOG.info("MessageBean.getNext.." + next);
         return next;
     }
 
     public void setNext(int next) {
+        LOG.info("MessageBean.setNext.." + next);
         this.next = next;
     }
 }
