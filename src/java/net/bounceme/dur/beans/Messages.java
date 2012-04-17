@@ -1,7 +1,6 @@
 package net.bounceme.dur.beans;
 
 import java.io.Serializable;
-import java.net.URL;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -19,8 +18,6 @@ public class Messages implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(Messages.class.getName());
-    private SingletonNNTP nntp;
-    private URL url = null;
     private DataModel messagesDataModel = null;
     private List<Message> messages = null;
     @Inject
@@ -29,8 +26,9 @@ public class Messages implements Serializable {
     @PostConstruct
     public void postConstruct() throws Exception {
         LOG.info("Messages.postConstruct..");
-        nntp = SingletonNNTP.INSTANCE;
-        messages = nntp.getMessages(false);
+        SingletonNNTP nntp = SingletonNNTP.INSTANCE;
+        boolean debugNNTP = false;
+        messages = nntp.getMessages(debugNNTP);
         messagesDataModel = new ListDataModel(messages);
     }
 
@@ -60,8 +58,7 @@ public class Messages implements Serializable {
         this.messageBean = messageBean;
     }
 
-    public void insert(Message message){
-         LOG.info("Messages.insert..");
+    public void insert(Message message) {
+        LOG.info("Messages.insert..");
     }
-
 }
