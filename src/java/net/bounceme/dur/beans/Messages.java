@@ -2,7 +2,6 @@ package net.bounceme.dur.beans;
 
 import java.io.Serializable;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -25,8 +24,8 @@ public class Messages implements Serializable {
     private List<Message> messages = null;
 
     @PostConstruct
-    public void foo() throws Exception {
-        LOG.info("Messages.foo..");
+    public void postConstruct() throws Exception {
+        LOG.info("Messages.postConstruct..");
         nntp = SingletonNNTP.INSTANCE;
         messages = nntp.getMessages(false);
         messagesDataModel = new ListDataModel(messages);
@@ -36,10 +35,6 @@ public class Messages implements Serializable {
         LOG.info("Messages..");
     }
 
-    public void action() throws Exception {
-        LOG.info("action..");
-    }
-
     public DataModel getModel() throws Exception {
         LOG.info("Messages.getModel..");
         return messagesDataModel;
@@ -47,17 +42,12 @@ public class Messages implements Serializable {
 
     public void forward() throws Exception {
         LOG.info("Messages.forward..");
-        nntp.page(false);
+
     }
 
     public void back() throws Exception {
         LOG.info("Messages.back..");
-        nntp.page(true);
-    }
 
-    public String detail(Message m) throws Exception {
-        LOG.info("Messages.detail..");
-        return "detail.xhtml";
     }
 
     public URL getUrl(Message m) throws Exception {
