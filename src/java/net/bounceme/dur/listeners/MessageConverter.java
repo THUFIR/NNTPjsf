@@ -9,7 +9,7 @@ import javax.faces.convert.FacesConverter;
 import javax.mail.Message;
 import net.bounceme.dur.nntp.SingletonNNTP;
 
-@FacesConverter("messageConverter")
+@FacesConverter(value="messageConverter",forClass=javax.mail.Message.class)
 public class MessageConverter implements Converter {
 
     private static final long serialVersionUID = 1L;
