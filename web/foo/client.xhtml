@@ -30,7 +30,10 @@
                 <f:facet name="id">
                     <h:outputText value="id" />
                 </f:facet>
-                <h:outputLink value="#{m.getMessageNumber()}">#{m.getMessageNumber()}</h:outputLink>
+                <h:outputLink id="hmmm" value="message.xhtml">
+                    <f:param name="id" value="#{m.getMessageNumber()}" />
+                    <h:outputText value="#{m.getMessageNumber()}" />
+                </h:outputLink>
             </h:column>
             <h:column>
                 <f:facet name="subject">
