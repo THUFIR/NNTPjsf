@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.mail.Message;
 import net.bounceme.dur.nntp.SingletonNNTP;
@@ -22,6 +23,8 @@ public class Messages implements Serializable {
     private URL url = null;
     private DataModel messagesDataModel = null;
     private List<Message> messages = null;
+    @Inject
+    private MessageBean messageBean;
 
     @PostConstruct
     public void postConstruct() throws Exception {
@@ -47,12 +50,14 @@ public class Messages implements Serializable {
 
     public void back() throws Exception {
         LOG.info("Messages.back..");
-
     }
 
-    public URL getUrl(Message m) throws Exception {
-        LOG.info("Messages.getUrl..");
-        url = MessageUtils.getUrl(m);
-        return url;
+    public MessageBean getMessageBean() {
+        return messageBean;
     }
+
+    public void setMessageBean(MessageBean messageBean) {
+        this.messageBean = messageBean;
+    }
+
 }
