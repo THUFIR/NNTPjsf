@@ -21,11 +21,15 @@ public class Messages implements Serializable {
     private static final Logger LOG = Logger.getLogger(Messages.class.getName());
     private SingletonNNTP nntp;
     private URL url = null;
+    private DataModel messagesDataModel = null;
 
     @PostConstruct
-    public void foo() {
+    public void foo() throws Exception {
         LOG.info("Messages.foo..");
         nntp = SingletonNNTP.INSTANCE;
+        List<Message> messages = new ArrayList<Message>();
+        messages = nntp.getMessages(false);
+        messagesDataModel = new ListDataModel(messages);
     }
 
     public Messages() {
@@ -38,9 +42,6 @@ public class Messages implements Serializable {
 
     public DataModel getModel() throws Exception {
         LOG.info("Messages.getModel..");
-        List<Message> messages = new ArrayList<Message>();
-        messages = nntp.getMessages(false);
-        DataModel messagesDataModel = new ListDataModel(messages);
         return messagesDataModel;
     }
 
@@ -64,7 +65,4 @@ public class Messages implements Serializable {
         url = MessageUtils.getUrl(m);
         return url;
     }
-
-
-
 }
