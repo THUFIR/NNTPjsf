@@ -30,12 +30,7 @@
                 <f:facet name="id">
                     <h:outputText value="id" />
                 </f:facet>
-                <h:form>
-                    <h:commandLink action="#{messages.detail(m)}">
-                        <f:actionListener type="net.bounceme.dur.listeners.DetailListener"/>
-                        <h:outputText value="#{m.getMessageNumber()}" converter="messageConverter"/>
-                    </h:commandLink>
-                </h:form>
+                <h:outputText value="#{m.getMessageNumber()}"></h:outputText>
             </h:column>
             <h:column>
                 <f:facet name="subject">
@@ -47,12 +42,7 @@
                 <f:facet name="date">
                     <h:outputText value="date" />
                 </f:facet>
-                <h:form>
-                    <h:commandLink action="#{messages.detail(m)}">
-                        <f:actionListener type="net.bounceme.dur.listeners.DetailListener"/>
-                        <h:outputText value="#{m.getMessageNumber()}" converter="messageConverter"/>
-                    </h:commandLink>
-                </h:form>
+                <h:outputText value="#{m.sentDate}"></h:outputText>
             </h:column>
             <h:column>
                 <f:facet name="date">

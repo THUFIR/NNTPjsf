@@ -28,7 +28,6 @@ public class Messages implements Serializable {
     public void foo() throws Exception {
         LOG.info("Messages.foo..");
         nntp = SingletonNNTP.INSTANCE;
-        messages = new ArrayList<Message>();
         messages = nntp.getMessages(false);
         messagesDataModel = new ListDataModel(messages);
     }
