@@ -33,8 +33,17 @@
                     <h:outputText value="id" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink action="#{messageBean.message(m)}" value="#{m.messageNumber}" />
+                    <h:commandLink id="messageLink" action="bookstore">
+                        <f:actionListener
+                            type="net.bounceme.dur.listeners.MessageListener" />
+                        <h:outputText value="#{bundle.Book201}"/>
+                    </h:commandLink>
                 </h:form>
+                <ui:remove>
+                    <h:form>
+                        <h:commandLink action="#{messageBean.message(m)}" value="#{m.messageNumber}" />
+                    </h:form>
+                </ui:remove>
                 <ui:remove>
                     <h:outputLink id="msgId" value="message.xhtml">
                         <f:param name="id" value="#{m.messageNumber}" />

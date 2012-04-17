@@ -5,14 +5,14 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 
-public class DetailListener implements ActionListener {
+public class MessageListener implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(DetailListener.class.getName());
+    private static final Logger LOG = Logger.getLogger(MessageListener.class.getName());
 
     @Override
     public void processAction(ActionEvent event) throws AbortProcessingException {
-        LOG.info("DetailListener.processAction..");
-        LOG.info("..DetailListener.processAction");
+        LOG.info("MessageListener.processAction..");
+        LOG.info("..MessageListener.processAction");
     }
 }
