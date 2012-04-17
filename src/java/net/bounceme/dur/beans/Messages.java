@@ -59,4 +59,9 @@ public class Messages implements Serializable {
     public void setMessageBean(MessageBean messageBean) {
         this.messageBean = messageBean;
     }
+
+    public void insert(Message message){
+         LOG.info("Messages.insert..");
+    }
+
 }

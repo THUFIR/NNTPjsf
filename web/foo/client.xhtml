@@ -32,10 +32,15 @@
                 <f:facet name="id">
                     <h:outputText value="id" />
                 </f:facet>
-                <h:outputLink id="hmmm" value="message.xhtml">
-                    <f:param name="id" value="#{m.getMessageNumber()}" />
-                    <h:outputText value="#{m.getMessageNumber()}" />
-                </h:outputLink>
+                <h:form>
+                    <h:commandLink action="#{messages.insert(m)}" value="#{m.messageNumber}" />
+                </h:form>
+                <ui:remove>
+                    <h:outputLink id="hmmm" value="message.xhtml">
+                        <f:param name="id" value="#{m.getMessageNumber()}" />
+                        <h:outputText value="#{m.getMessageNumber()}" />
+                    </h:outputLink>
+                </ui:remove>
             </h:column>
             <h:column>
                 <f:facet name="subject">

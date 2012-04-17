@@ -49,12 +49,12 @@ public class MessageBean implements Serializable {
     }
 
     public URL getUrl() throws Exception {
-        LOG.info("MessageBean.getUrl.." + url.toString());
+        LOG.info("MessageBean.getUrl..");
         return url;
     }
 
     public void setUrl(URL url) {
-        LOG.info("MessageBean.setUrl.." + url.toString());
+        LOG.info("MessageBean.setUrl..");
         this.url = url;
     }
 
