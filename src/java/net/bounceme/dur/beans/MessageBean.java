@@ -83,6 +83,12 @@ public class MessageBean implements Serializable {
         return next;
     }
 
+    /*
+     *          <h:link value="back" outcome="detail" includeViewParams="true">
+                        <f:param name="id" value="#{detail.back}"/>
+                    </h:link>
+
+     */
     public void setNext(int next) {
         LOG.info("MessageBean.setNext.." + next);
         this.next = next;

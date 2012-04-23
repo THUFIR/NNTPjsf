@@ -64,7 +64,25 @@ public class Messages implements Serializable {
         return "/faces/foo/message.xhtml";
     }
 
-    public String doMessage(){
-        return "message";
+    /*
+     *                 <h:outputLink id="hmmm" value="detail.xhtml">
+                    <f:param name="id" value="#{m.getMessageNumber()}" />
+                    <h:outputText value="#{m.getMessageNumber()}" />
+                </h:outputLink>
+
+*
+*
+*                 <h:form>
+                    <h:commandLink id="messageLink"  value="#{m.messageNumber}" actionListener="#{MessageListener}"  action="#{messages.doMessage(m)}" >
+                    </h:commandLink>
+                </h:form>
+                *
+*
+     */
+    public String doMessage(Message message) {
+        LOG.info("Messages.doMessage.." + message.getMessageNumber());
+        int suffix = message.getMessageNumber();
+        String prefix = "message";
+        return prefix;
     }
 }

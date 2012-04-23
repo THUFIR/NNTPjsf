@@ -22,6 +22,7 @@ public class MessageConverter implements Converter {
         Message message = null;
         try {
             message = nntp.getMessage();
+            LOG.info("MessageConverter.getAsObject:" + message.getMessageNumber());
         } catch (Exception ex) {
             Logger.getLogger(MessageConverter.class.getName()).log(Level.SEVERE, null, ex);
         }
