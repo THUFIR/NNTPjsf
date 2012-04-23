@@ -60,6 +60,11 @@ public class Messages implements Serializable {
 
     public String setMessage(Message message) {
         LOG.info("Messages.setMessage.." + message.getMessageNumber());
+        messageBean.setMessage(message);
+        return "/faces/foo/message.xhtml";
+    }
+
+    public String doMessage(){
         return "message";
     }
 }

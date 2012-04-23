@@ -33,8 +33,7 @@
                     <h:outputText value="id" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="messageLink" action="#{messageBean.setMessage(m)}">
-                        <h:outputText value="#{m.messageNumber}"/>
+                    <h:commandLink id="messageLink" value="#{m.messageNumber}" action="#{messages.doMessage()}" >
                     </h:commandLink>
                 </h:form>
             </h:column>
